@@ -32,6 +32,7 @@ const card = (product) => {
 
   return `
     <a class="card" href="product.html?slug=${encodeURIComponent(product.slug || "")}">
+      ${product.badge ? `<span class="badge">${escapeHTML(product.badge)}</span>` : ""}
       <div class="cov c-${category}">
         <b>${escapeHTML(product.title)}</b>
         <span>${formats.map(escapeHTML).join(" · ")}</span>
@@ -40,7 +41,7 @@ const card = (product) => {
         <small>${escapeHTML(product.category)}</small>
         <h3>${escapeHTML(product.title)}</h3>
         <p>${escapeHTML(product.description)}</p>
-        <div class="pr"><span>${money(product)}</span><i>View details →</i></div>
+        <div class="pr"><span>${money(product)}</span><span class="lv">${escapeHTML(product.level || "")}</span></div>
       </div>
     </a>`;
 };
@@ -118,7 +119,7 @@ load
           </div>
 
           <div class="product-copy">
-            <div class="eyebrow">${escapeHTML(product.category)}</div>
+            <div class="crumb"><a href="explore.html">Explore</a><span>/</span><a href="explore.html?cat=${category}">${escapeHTML(product.category)}</a></div>
             <h1>${escapeHTML(product.title)}</h1>
             <p class="lead">${escapeHTML(product.description)}</p>
             <div class="price">${money(product)}</div>
@@ -134,6 +135,7 @@ load
               <a class="btn o" href="contact.html?topic=Question&amp;message=${encodeURIComponent(`I have a question about ${product.title} (${product.id}).`)}">Ask a question</a>
             </div>
 
+            <div class="trust"><span>Original work</span><span>Private delivery</span><span>Human support</span></div>
             <div class="product-section">
               <h3>Who it's for</h3>
               <p>${escapeHTML(product.audience)}</p>
@@ -152,11 +154,12 @@ load
 
       <section class="product-process">
         <div class="w">
-          <p class="eyebrow">SIMPLE & PERSONAL</p>
           <h2>How ordering works</h2>
+          <div class="steps">
           <div class="step"><b>01</b><p><strong>Send your enquiry</strong><br>Tell us which resource you'd like. Your email opens with the product details included.</p></div>
           <div class="step"><b>02</b><p><strong>Receive a reply</strong><br>We'll respond with payment details and an order reference.</p></div>
           <div class="step"><b>03</b><p><strong>Get your resource</strong><br>After payment is confirmed, we'll send the files to you privately.</p></div>
+          </div>
           ${related.length ? `<div class="related-products"><h2>You may also like</h2><div class="grid">${related.map(card).join("")}</div></div>` : ""}
         </div>
       </section>`;

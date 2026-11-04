@@ -3,39 +3,29 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="theme-color" content="#F6F5F0" />
+    <meta name="theme-color" content="#0d1230" />
     <meta property="og:site_name" content="NOVIQ" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Explore | NOVIQ</title>
-    <meta
-      name="description"
-      content="Browse all NOVIQ resources by category or search."
-    />
+    <title>Explore resources | NOVIQ</title>
+    <meta name="description" content="Browse every NOVIQ guide, template, workbook and starter kit." />
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/components.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div id="hdr"></div>
     <main id="main">
-      <section class="light">
-        <div class="w">
-          <div class="eyebrow">Explore</div>
-          <h2>All resources</h2>
-          <input
-            id="sq"
-            type="search"
-            placeholder="Search guides, templates, workbooks..."
-            aria-label="Search"
-          />
-          <div class="filters" id="fl"></div>
-          <p id="cnt"></p>
-          <div class="grid" id="ex"></div>
-        </div>
-      </section>
+      <section class="light ph"><div class="w"><h1>All resources</h1><p class="lead">Search by topic, then filter by collection.</p>
+          <div class="tools"><input id="sq" type="search" placeholder="Search guides, templates, workbooks" aria-label="Search" /><select id="so" aria-label="Sort resources"><option value="featured">Featured first</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+          <div class="filters" id="fl"></div><p id="cnt" aria-live="polite"></p></div></section>
+      <section class="light" style="padding-top:16px"><div class="w"><div class="grid" id="ex" style="margin-top:0"></div></div></section>
     </main>
     <div id="ftr"></div>
     <script src="js/main.js"></script>

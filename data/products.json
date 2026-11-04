@@ -8,7 +8,9 @@
     "featured": true,
     "description": "A visual introduction to Git and GitHub with diagrams for every core idea.",
     "level": "Beginner",
-    "format": ["PDF"],
+    "format": [
+      "PDF"
+    ],
     "audience": "Beginners who want to understand version control without memorising commands.",
     "includes": [
       "Illustrated guide to commits, branches and merges",
@@ -26,7 +28,9 @@
     "featured": true,
     "description": "Printable one-page references for HTML, CSS layout, Flexbox and Grid.",
     "level": "Beginner",
-    "format": ["PDF"],
+    "format": [
+      "PDF"
+    ],
     "audience": "Students and self-taught developers who want fast answers while coding.",
     "includes": [
       "HTML tags reference",
@@ -44,7 +48,9 @@
     "featured": true,
     "description": "A ready-made Notion system for projects, notes, bugs and learning progress.",
     "level": "All levels",
-    "format": ["Notion template"],
+    "format": [
+      "Notion template"
+    ],
     "audience": "Developers and students who want one place for projects and learning.",
     "includes": [
       "Project tracker",
@@ -62,9 +68,15 @@
     "featured": true,
     "description": "Logic exercises that build real JavaScript problem-solving skills, with solutions.",
     "level": "Beginner to intermediate",
-    "format": ["PDF"],
+    "format": [
+      "PDF"
+    ],
     "audience": "Learners who know the basics and need structured practice.",
-    "includes": ["Graded exercises", "Worked solutions", "Mini challenges"],
+    "includes": [
+      "Graded exercises",
+      "Worked solutions",
+      "Mini challenges"
+    ],
     "prereq": "Basic JavaScript syntax."
   },
   {
@@ -76,11 +88,99 @@
     "featured": true,
     "description": "A clean, responsive portfolio template with a project brief and starter files.",
     "level": "Beginner",
-    "format": ["HTML/CSS/JS", "PDF"],
+    "format": [
+      "HTML/CSS/JS",
+      "PDF"
+    ],
     "audience": "Students building their first portfolio site.",
     "includes": [
       "Responsive starter files",
       "Project brief",
+      "Customisation guide"
+    ],
+    "prereq": "A code editor and basic HTML/CSS."
+  },
+  {
+    "id": "react-patterns-cheat-sheet",
+    "title": "React Patterns Cheat Sheet",
+    "slug": "react-patterns-cheat-sheet",
+    "category": "learn",
+    "price_inr": 129,
+    "featured": false,
+    "badge": "New",
+    "description": "Visual one-pagers for hooks, state, composition and common component patterns.",
+    "level": "Intermediate",
+    "format": [
+      "PDF"
+    ],
+    "audience": "Developers moving from tutorials to real React projects.",
+    "includes": [
+      "Hooks reference sheets",
+      "State and composition patterns",
+      "Common pitfalls and fixes"
+    ],
+    "prereq": "Basic JavaScript and a first React project."
+  },
+  {
+    "id": "python-practice-workbook",
+    "title": "Python Practice Workbook",
+    "slug": "python-practice-workbook",
+    "category": "practice",
+    "price_inr": 179,
+    "featured": false,
+    "badge": "New",
+    "description": "Graded Python exercises that build problem-solving skills, with worked solutions.",
+    "level": "Beginner to intermediate",
+    "format": [
+      "PDF"
+    ],
+    "audience": "Learners who know the basics and want structured practice.",
+    "includes": [
+      "Graded exercises",
+      "Worked solutions",
+      "Mini projects"
+    ],
+    "prereq": "Python installed and basic syntax."
+  },
+  {
+    "id": "student-project-tracker",
+    "title": "Student Project Tracker",
+    "slug": "student-project-tracker",
+    "category": "organize",
+    "price_inr": 149,
+    "featured": false,
+    "badge": "New",
+    "description": "A simple Notion tracker for assignments, deadlines and project milestones.",
+    "level": "All levels",
+    "format": [
+      "Notion template"
+    ],
+    "audience": "Students juggling coursework and side projects.",
+    "includes": [
+      "Assignment and deadline board",
+      "Project milestone tracker",
+      "Weekly review page"
+    ],
+    "prereq": "A free Notion account."
+  },
+  {
+    "id": "landing-page-starter-kit",
+    "title": "Landing Page Starter Kit",
+    "slug": "landing-page-starter-kit",
+    "category": "build",
+    "price_inr": 299,
+    "featured": false,
+    "badge": "New",
+    "description": "A polished, responsive landing page template with sections, brief and guide.",
+    "level": "Beginner to intermediate",
+    "format": [
+      "HTML/CSS/JS",
+      "PDF"
+    ],
+    "audience": "Freelancers and students shipping a first client or product page.",
+    "includes": [
+      "Responsive starter files",
+      "Section library",
       "Customisation guide"
     ],
     "prereq": "A code editor and basic HTML/CSS."
@@ -94,9 +194,14 @@
     "file": "assets/free/html-css-quick-reference.pdf",
     "description": "A free one-page starter reference to try NOVIQ quality.",
     "level": "Beginner",
-    "format": ["PDF"],
+    "format": [
+      "PDF"
+    ],
     "audience": "Anyone starting with web development.",
-    "includes": ["Essential tags", "Core CSS properties"],
+    "includes": [
+      "Essential tags",
+      "Core CSS properties"
+    ],
     "prereq": "None."
   },
   {
@@ -108,7 +213,9 @@
     "featured": false,
     "description": "Visual guide, cheat sheets and workbook together for a complete beginner path.",
     "level": "Beginner",
-    "format": ["PDF"],
+    "format": [
+      "PDF"
+    ],
     "audience": "Beginners who want one coherent learning path.",
     "includes": [
       "Git & GitHub Visual Guide",
@@ -126,7 +233,11 @@
     "featured": false,
     "description": "Every NOVIQ launch resource: learn, practise, organise and build.",
     "level": "All levels",
-    "format": ["PDF", "Notion template", "HTML/CSS/JS"],
+    "format": [
+      "PDF",
+      "Notion template",
+      "HTML/CSS/JS"
+    ],
     "audience": "Learners who want the whole toolkit.",
     "includes": [
       "All five launch products",
