@@ -5,7 +5,9 @@ const Cart = {
   get() {
     try {
       const saved = JSON.parse(localStorage.getItem(this.key) || "[]");
-      return Array.isArray(saved) ? [...new Set(saved.filter((id) => typeof id === "string"))] : [];
+      return Array.isArray(saved)
+        ? [...new Set(saved.filter((id) => typeof id === "string"))]
+        : [];
     } catch {
       return [];
     }
@@ -50,7 +52,10 @@ const Cart = {
       const selected = ids
         .map((id) => products.find((product) => product.id === id))
         .filter(Boolean);
-      const total = selected.reduce((sum, product) => sum + (Number(product.price_inr) || 0), 0);
+      const total = selected.reduce(
+        (sum, product) => sum + (Number(product.price_inr) || 0),
+        0,
+      );
 
       if (!selected.length) {
         itemsRoot.innerHTML = `
@@ -63,18 +68,25 @@ const Cart = {
         return;
       }
 
-      itemsRoot.innerHTML = selected.map((product) => `
+      itemsRoot.innerHTML = selected
+        .map(
+          (product) => `
         <div class="ci">
           <div class="ci-info">
             <b>${escapeHTML(product.title)}</b>
             <small>${product.price_inr ? `₹${Number(product.price_inr).toLocaleString("en-IN")}` : "Free"}</small>
           </div>
           <button type="button" data-rm="${escapeHTML(product.id)}" aria-label="Remove ${escapeHTML(product.title)} from enquiry list">×</button>
-        </div>`).join("");
+        </div>`,
+        )
+        .join("");
 
       const orderMessage = [
         "I'd like to enquire about the following NOVIQ resources:",
-        ...selected.map((product) => `- ${product.title} (${product.price_inr ? `₹${product.price_inr}` : "Free"}) · ID: ${product.id}`),
+        ...selected.map(
+          (product) =>
+            `- ${product.title} (${product.price_inr ? `₹${product.price_inr}` : "Free"}) · ID: ${product.id}`,
+        ),
         `Total (indicative): ₹${total.toLocaleString("en-IN")}`,
         "Please share the next steps for ordering.",
       ].join("\n");
@@ -91,7 +103,8 @@ const Cart = {
         <p class="cart-note">No payment is taken here. We'll confirm availability and payment details by email.</p>`;
     } catch (error) {
       console.error("NOVIQ enquiry list error:", error);
-      itemsRoot.innerHTML = '<p class="ce">Your list could not be loaded. Please refresh the page.</p>';
+      itemsRoot.innerHTML =
+        '<p class="ce">Your list could not be loaded. Please refresh the page.</p>';
       summaryRoot.innerHTML = "";
     }
   },
@@ -102,6 +115,37 @@ document.body.insertAdjacentHTML(
   '<aside id="ct" aria-label="Enquiry list" aria-live="polite"><div class="dh"><h3>Enquiry list</h3><button class="ib cx" type="button" aria-label="Close enquiry list">×</button></div><div id="ci"></div><div id="cs"></div></aside>',
 );
 
+// Small confirmation toast: shows what changed without opening the drawer.
+let toastTimer;
+const hideToast = () => {
+  clearTimeout(toastTimer);
+  $("#toast")?.classList.remove("show");
+};
+const showToast = (message) => {
+  let el = $("#toast");
+  if (!el) {
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      '<div id="toast" role="status" aria-live="polite"></div>',
+    );
+    el = $("#toast");
+    el.addEventListener("mouseenter", () => clearTimeout(toastTimer));
+    el.addEventListener("mouseleave", () => (toastTimer = setTimeout(hideToast, 2200)));
+  }
+  el.innerHTML = `<span class="t-ico">${icon("check", 16)}</span><span class="t-msg"></span><button type="button" data-open-list>View list</button>`;
+  el.querySelector(".t-msg").textContent = message;
+  // restart the entrance so repeated adds feel acknowledged
+  el.classList.remove("show");
+  void el.offsetWidth;
+  el.classList.add("show");
+  const badge = $("#cb");
+  badge?.classList.remove("bump");
+  void badge?.offsetWidth;
+  badge?.classList.add("bump");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(hideToast, 4200);
+};
+
 const toggleCart = (open) => document.body.classList.toggle("ct", open);
 
 document.addEventListener("click", (event) => {
@@ -109,7 +153,24 @@ document.addEventListener("click", (event) => {
   const removeButton = event.target.closest("[data-rm]");
 
   if (addButton) {
-    Cart.add(addButton.dataset.add);
+    const id = addButton.dataset.add;
+    const already = Cart.get().includes(id);
+    Cart.add(id);
+    addButton.innerHTML = "✓ In your enquiry list";
+    addButton.classList.add("added");
+    load
+      .then((list) => list.find((item) => item.id === id))
+      .then((item) =>
+        showToast(
+          already
+            ? `${item ? item.title : "This resource"} is already in your list`
+            : `${item ? item.title : "Resource"} added to your enquiry list`,
+        ),
+      )
+      .catch(() => showToast("Added to your enquiry list"));
+  }
+  if (event.target.closest("[data-open-list]")) {
+    hideToast();
     toggleCart(true);
   }
   if (removeButton) Cart.remove(removeButton.dataset.rm);

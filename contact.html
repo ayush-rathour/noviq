@@ -8,37 +8,146 @@
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>Contact | NOVIQ</title>
-    <meta name="description" content="Send an order enquiry or ask NOVIQ a question." />
+    <meta
+      name="description"
+      content="Send an order enquiry or ask NOVIQ a question."
+    />
     <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="assets/icons/favicon.ico" sizes="48x48" />
     <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div id="hdr"></div>
     <main id="main">
-      <section class="light"><div class="w two">
+      <section class="light">
+        <div class="w two">
           <div>
-            <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Order enquiries and support</h1>
-            <p class="lead" style="font-size:1rem">Send us a message and the NOVIQ team will reply by email.</p>
-            <form id="cf" action="https://api.web3forms.com/submit" method="POST">
-              <input type="hidden" name="access_key" value="acdefb25-584d-43b4-8423-de58bb8f4396" />
-              <input type="hidden" name="subject" value="New enquiry from NOVIQ" />
+            <h1 style="font-size: clamp(2.2rem, 5vw, 3.6rem)">
+              Order enquiries and support
+            </h1>
+            <p class="lead" style="font-size: 1rem">
+              Send us a message and the NOVIQ team will reply by email.
+            </p>
+            <div data-form-wrap>
+            <form
+              id="cf"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <input
+                type="hidden"
+                name="access_key"
+                value="acdefb25-584d-43b4-8423-de58bb8f4396"
+              />
+              <input
+                type="hidden"
+                name="subject"
+                value="New enquiry from NOVIQ"
+              />
               <input type="hidden" name="from_name" value="NOVIQ Website" />
-              <label>Name<input name="name" type="text" autocomplete="name" placeholder="Your name" required /></label>
-              <label>Email<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required /></label>
-              <label>Topic<select name="topic" id="cf-topic"><option>Order enquiry</option><option>Question</option><option>Support</option></select></label>
-              <label>Message<textarea name="message" id="cf-message" rows="5" placeholder="How can we help?" required></textarea></label>
-              <button class="btn" type="submit">Send enquiry <span>&rarr;</span></button>
+              <label
+                >Name<input
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Your name"
+                  required
+              /></label>
+              <label
+                >Email<input
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  required
+              /></label>
+              <label
+                >Topic<select name="topic" id="cf-topic">
+                  <option>Order enquiry</option>
+                  <option>Question</option>
+                  <option>Support</option>
+                </select></label
+              >
+              <label
+                >Message<textarea
+                  name="message"
+                  id="cf-message"
+                  rows="5"
+                  placeholder="How can we help?"
+                  required
+                ></textarea>
+              </label>
+              <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <p id="cf-err" class="cf-err" role="alert" hidden></p>
+              <button class="btn" type="submit">
+                Send enquiry <span>&rarr;</span>
+              </button>
             </form>
+            </div>
+            <div id="thanks" class="thanks" role="status" tabindex="-1" hidden>
+              <div class="thanks-mark" aria-hidden="true"><i data-ico="check" data-size="30"></i></div>
+              <h2>Thanks, <span id="th-name">there</span>. Your message is in.</h2>
+              <p>We'll reply to <b id="th-email"></b>. For an order, the reply includes payment details and an order reference.</p>
+              <div class="thanks-actions">
+                <a class="btn" href="explore.html">Browse resources <span>&rarr;</span></a>
+                <button class="btn o" type="button" id="th-again">Send another message</button>
+              </div>
+            </div>
           </div>
-          <div id="faq"><h2>FAQ</h2><details><summary>How do I order?</summary><p>Open a resource, choose Enquire by email, and we reply with payment details and an order reference. No payment is taken on this site.</p></details><details><summary>How is my file delivered?</summary><p>Privately by email, after your payment is confirmed. Previews never contain the complete paid file.</p></details><details><summary>Which formats do you offer?</summary><p>PDF guides and workbooks, Notion templates, and HTML/CSS/JS starter files. Every product page lists its formats.</p></details><details><summary>Do I need any experience?</summary><p>Each resource states its level and prerequisites up front, from complete beginner to intermediate.</p></details><details><summary>What about refunds?</summary><p>Refund terms will be published before orders open.</p></details><details><summary>Can I try before I buy?</summary><p>Yes. The free library has resources you can download without paying.</p></details></div>
-      </div></section>
+          <div id="faq">
+            <h2>FAQ</h2>
+            <details>
+              <summary>How do I order?</summary>
+              <p>
+                Open a resource, choose Enquire by email, and we reply with
+                payment details and an order reference. No payment is taken on
+                this site.
+              </p>
+            </details>
+            <details>
+              <summary>How is my file delivered?</summary>
+              <p>
+                Privately by email, after your payment is confirmed. Previews
+                never contain the complete paid file.
+              </p>
+            </details>
+            <details>
+              <summary>Which formats do you offer?</summary>
+              <p>
+                PDF guides and workbooks, Notion templates, and HTML/CSS/JS
+                starter files. Every product page lists its formats.
+              </p>
+            </details>
+            <details>
+              <summary>Do I need any experience?</summary>
+              <p>
+                Each resource states its level and prerequisites up front, from
+                complete beginner to intermediate.
+              </p>
+            </details>
+            <details>
+              <summary>What about refunds?</summary>
+              <p>Refund terms will be published before orders open.</p>
+            </details>
+            <details>
+              <summary>Can I try before I buy?</summary>
+              <p>
+                Yes. The free library has resources you can download without
+                paying.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
     </main>
     <div id="ftr"></div>
     <script src="js/main.js"></script>

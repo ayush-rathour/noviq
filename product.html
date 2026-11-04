@@ -15,14 +15,32 @@
     <link rel="manifest" href="site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <div id="hdr"></div>
     <main id="main">
-      <div id="prod"><section><div class="w">Loading…</div></section></div>
+      <div id="prod" aria-busy="true" aria-label="Loading resource">
+        <section class="light product-detail" aria-hidden="true">
+          <div class="w two">
+            <div class="sk sk-prod"></div>
+            <div>
+              <div class="sk sk-l s30"></div>
+              <div class="sk sk-l s85 xl"></div>
+              <div class="sk sk-l s70"></div>
+              <div class="sk sk-l s40 xl"></div>
+              <div class="sk sk-btn"></div>
+              <div class="sk sk-l s85"></div>
+              <div class="sk sk-l s60"></div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
     <div id="ftr"></div>
     <script src="js/main.js"></script>
