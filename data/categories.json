@@ -1,0 +1,32 @@
+[
+  {
+    "id": "build",
+    "title": "Build",
+    "tagline": "Ship real projects",
+    "description": "Starter kits and project-building kits with files you can use straight away."
+  },
+  {
+    "id": "learn",
+    "title": "Learn",
+    "tagline": "Understand it visually",
+    "description": "Visual learning guides, cheat sheets and technical diagram packs."
+  },
+  {
+    "id": "organize",
+    "title": "Organize",
+    "tagline": "Run your work and learning",
+    "description": "Notion templates and productivity systems for developers and students."
+  },
+  {
+    "id": "practice",
+    "title": "Practice",
+    "tagline": "Turn knowledge into skill",
+    "description": "Workbooks, exercises and challenges with worked solutions."
+  },
+  {
+    "id": "bundle",
+    "title": "Bundles",
+    "tagline": "Complete learning paths",
+    "description": "Curated multi-product offers combining complementary formats."
+  }
+]

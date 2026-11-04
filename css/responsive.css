@@ -1,0 +1,148 @@
+/* NOVIQ responsive and motion preferences */
+@media (max-width: 1100px) {
+  .hg {
+    gap: var(--s7);
+  }
+  .idm {
+    font-size: 6rem;
+  }
+}
+@media (max-width: 960px) {
+  nav,
+  .ha .btn {
+    display: none;
+  }
+  #mb {
+    display: grid;
+  }
+  .hb {
+    grid-template-columns: 1fr auto;
+    height: 64px;
+  }
+  .hg,
+  .two {
+    grid-template-columns: 1fr;
+  }
+  .idc {
+    max-width: 340px;
+    margin-top: var(--s5);
+  }
+  .ft {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ft div:nth-child(2) {
+    border-right: 0;
+  }
+  .fm {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s6);
+  }
+  .fm > div:first-child {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 640px) {
+  .ann {
+    font-size: 0.72rem;
+  }
+  .ann a {
+    display: block;
+    margin: 2px 0 0;
+  }
+  .hero h1 {
+    max-width: none;
+  }
+  .stats {
+    gap: var(--s5) var(--s6);
+  }
+  .stats b {
+    font-size: 1.65rem;
+  }
+  .hero .btn,
+  .band .btn {
+    width: 100%;
+  }
+  .hero .btn.o {
+    margin: var(--s3) 0 0;
+  }
+  .grid {
+    gap: var(--s4);
+  }
+  .price {
+    font-size: 2.1rem;
+  }
+  .idm {
+    font-size: 5rem;
+  }
+  details p {
+    padding-right: 0;
+  }
+  .filters {
+    gap: 6px;
+  }
+  .chip {
+    padding: 8px 14px;
+  }
+  .fb {
+    flex-direction: column;
+  }
+  .fb a {
+    padding: 4px 0;
+  }
+  footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+@media (max-width: 400px) {
+  .ft {
+    grid-template-columns: 1fr;
+  }
+  .ft div {
+    border-right: 0;
+  }
+  .fm {
+    grid-template-columns: 1fr;
+  }
+  .logo {
+    font-size: 1.2rem;
+  }
+}
+@media (hover: none) {
+  .card:hover,
+  .tile:hover,
+  .idc:hover,
+  .btn:hover,
+  .ib:hover {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media print {
+  #hdr,
+  #prog,
+  footer,
+  #dr,
+  #ct,
+  #ov {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+  .rv {
+    opacity: 1;
+    transform: none;
+  }
+}

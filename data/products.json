@@ -1,0 +1,137 @@
+[
+  {
+    "id": "git-github-visual-guide",
+    "title": "Git & GitHub Visual Guide",
+    "slug": "git-github-visual-guide",
+    "category": "learn",
+    "price_inr": 149,
+    "featured": true,
+    "description": "A visual introduction to Git and GitHub with diagrams for every core idea.",
+    "level": "Beginner",
+    "format": ["PDF"],
+    "audience": "Beginners who want to understand version control without memorising commands.",
+    "includes": [
+      "Illustrated guide to commits, branches and merges",
+      "Command quick-reference page",
+      "Common mistakes and how to fix them"
+    ],
+    "prereq": "A computer with Git installed. No coding experience needed."
+  },
+  {
+    "id": "html-css-cheat-sheet-bundle",
+    "title": "HTML & CSS Cheat Sheet Bundle",
+    "slug": "html-css-cheat-sheet-bundle",
+    "category": "learn",
+    "price_inr": 99,
+    "featured": true,
+    "description": "Printable one-page references for HTML, CSS layout, Flexbox and Grid.",
+    "level": "Beginner",
+    "format": ["PDF"],
+    "audience": "Students and self-taught developers who want fast answers while coding.",
+    "includes": [
+      "HTML tags reference",
+      "Flexbox and Grid visual sheets",
+      "CSS selectors and units sheet"
+    ],
+    "prereq": "Basic familiarity with web pages."
+  },
+  {
+    "id": "developer-notion-workspace",
+    "title": "Developer Notion Workspace",
+    "slug": "developer-notion-workspace",
+    "category": "organize",
+    "price_inr": 199,
+    "featured": true,
+    "description": "A ready-made Notion system for projects, notes, bugs and learning progress.",
+    "level": "All levels",
+    "format": ["Notion template"],
+    "audience": "Developers and students who want one place for projects and learning.",
+    "includes": [
+      "Project tracker",
+      "Learning progress tracker",
+      "Bug and idea log"
+    ],
+    "prereq": "A free Notion account."
+  },
+  {
+    "id": "javascript-practice-workbook",
+    "title": "JavaScript Practice Workbook",
+    "slug": "javascript-practice-workbook",
+    "category": "practice",
+    "price_inr": 179,
+    "featured": true,
+    "description": "Logic exercises that build real JavaScript problem-solving skills, with solutions.",
+    "level": "Beginner to intermediate",
+    "format": ["PDF"],
+    "audience": "Learners who know the basics and need structured practice.",
+    "includes": ["Graded exercises", "Worked solutions", "Mini challenges"],
+    "prereq": "Basic JavaScript syntax."
+  },
+  {
+    "id": "personal-portfolio-starter-kit",
+    "title": "Personal Portfolio Starter Kit",
+    "slug": "personal-portfolio-starter-kit",
+    "category": "build",
+    "price_inr": 249,
+    "featured": true,
+    "description": "A clean, responsive portfolio template with a project brief and starter files.",
+    "level": "Beginner",
+    "format": ["HTML/CSS/JS", "PDF"],
+    "audience": "Students building their first portfolio site.",
+    "includes": [
+      "Responsive starter files",
+      "Project brief",
+      "Customisation guide"
+    ],
+    "prereq": "A code editor and basic HTML/CSS."
+  },
+  {
+    "id": "html-css-quick-reference",
+    "title": "HTML & CSS Quick Reference (Free)",
+    "slug": "html-css-quick-reference",
+    "category": "learn",
+    "price_inr": 0,
+    "file": "assets/free/html-css-quick-reference.pdf",
+    "description": "A free one-page starter reference to try NOVIQ quality.",
+    "level": "Beginner",
+    "format": ["PDF"],
+    "audience": "Anyone starting with web development.",
+    "includes": ["Essential tags", "Core CSS properties"],
+    "prereq": "None."
+  },
+  {
+    "id": "web-dev-starter-bundle",
+    "title": "Web Dev Starter Bundle",
+    "slug": "web-dev-starter-bundle",
+    "category": "bundle",
+    "price_inr": 449,
+    "featured": false,
+    "description": "Visual guide, cheat sheets and workbook together for a complete beginner path.",
+    "level": "Beginner",
+    "format": ["PDF"],
+    "audience": "Beginners who want one coherent learning path.",
+    "includes": [
+      "Git & GitHub Visual Guide",
+      "HTML & CSS Cheat Sheet Bundle",
+      "JavaScript Practice Workbook"
+    ],
+    "prereq": "None."
+  },
+  {
+    "id": "complete-builder-bundle",
+    "title": "Complete Builder Bundle",
+    "slug": "complete-builder-bundle",
+    "category": "bundle",
+    "price_inr": 749,
+    "featured": false,
+    "description": "Every NOVIQ launch resource: learn, practise, organise and build.",
+    "level": "All levels",
+    "format": ["PDF", "Notion template", "HTML/CSS/JS"],
+    "audience": "Learners who want the whole toolkit.",
+    "includes": [
+      "All five launch products",
+      "Future updates to included files"
+    ],
+    "prereq": "None."
+  }
+]
