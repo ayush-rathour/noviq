@@ -1,14 +1,110 @@
-/* NOVIQ responsive and motion preferences */
+/* ==========================================================================
+   NOVIQ responsive layer. Loaded after style.css, so it has the last word.
+   Breakpoints:  1100 · 960 (nav collapses, columns stack) · 760 · 640 · 480 · 380
+   Spacing tokens (--s1…--s8), --gut, --wmax and --hdr-clear live in :root in style.css.
+   ========================================================================== */
+
+/* ---------- 1. Foundations: nothing is allowed to push its parent wider ---------- */
+:where(
+  .w,
+  .article-layout,
+  .article-content,
+  .product-detail,
+  .product-copy,
+  .blog-card,
+  .tile,
+  .card,
+  .step,
+  .val > div,
+  .hg > *,
+  .two > *,
+  .why > *,
+  .faq-wrap > *,
+  .fm > *,
+  .idx a > *
+) {
+  min-width: 0;
+}
+:where(img, video, iframe) {
+  max-width: 100%;
+}
+:where(p, li, a, button, h1, h2, h3, h4, dt, dd, summary, label, small) {
+  overflow-wrap: break-word;
+}
+:where(button, .btn, .chip, summary, a) {
+  -webkit-tap-highlight-color: transparent;
+}
+:where(button, .btn, .chip, .blog-filter) {
+  touch-action: manipulation;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* Card covers: title scales with the card, so one-column phone cards and wide
+   cards don't carry the same tiny headline as a 270px card. */
+.grid .cov {
+  container-type: inline-size;
+}
+.grid .cov b {
+  font-size: clamp(1.4rem, 6.4cqw, 1.9rem);
+}
+/* narrow cards wrap titles to 3 lines: keep the artwork above them */
+@container (max-width: 330px) {
+  .cov > .cv-art {
+    top: 10%;
+    height: 34%;
+  }
+}
+
+/* Hero cards are small: lift the artwork clear of the title */
+.stk .mc .cv-art {
+  top: 8%;
+  height: 30%;
+}
+
+/* About hero: the lead had no bottom margin, so the buttons touched it */
+.about-hero .lead {
+  margin-bottom: var(--s5);
+}
+
+/* The toast must never sit on top of an open menu or cart drawer */
+body.dr #toast,
+body.ct #toast {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- 2. Fixed header never covers the first thing on a page ---------- */
+main > section:first-child,
+main > div > section:first-child {
+  padding-top: max(var(--sec), var(--hdr-clear));
+}
+
+/* ---------- 3. Large screens: scale type and container together ---------- */
+@media (min-width: 1700px) {
+  html {
+    font-size: 106.25%; /* 17px */
+  }
+}
+@media (min-width: 2200px) {
+  html {
+    font-size: 118.75%; /* 19px */
+  }
+}
+
+/* ---------- 4. ≤1100px ---------- */
 @media (max-width: 1100px) {
   .hg {
     gap: var(--s7);
   }
-  .idm {
-    font-size: 6rem;
-  }
 }
+
+/* ---------- 5. ≤960px: tablet and below ---------- */
 @media (max-width: 960px) {
-  nav,
+  /* header: swap nav for the menu button */
+  #nv,
   .ha .btn {
     display: none;
   }
@@ -16,47 +112,143 @@
     display: grid;
   }
   .hb {
-    grid-template-columns: 1fr auto;
-    height: 64px;
+    gap: var(--s3);
   }
+
+  /* two-column layouts stack */
   .hg,
-  .two {
+  .two,
+  .why,
+  .faq-wrap {
     grid-template-columns: 1fr;
   }
-  .idc {
-    max-width: 340px;
-    margin-top: var(--s5);
+  .two {
+    align-items: start;
   }
-  .ft {
-    grid-template-columns: 1fr 1fr;
+  .hg {
+    align-items: center;
   }
-  .ft div:nth-child(2) {
-    border-right: 0;
+
+  /* hero card stack: a tidy diagonal cascade that scales with its own width.
+     Cards step down and to the right, so each one only overlaps the empty
+     bottom-right corner of the card above it, never its title. */
+  .stk {
+    width: min(100%, 460px);
+    height: auto;
+    aspect-ratio: 1 / 1.1;
+    margin: var(--s5) auto 0;
+    container-type: inline-size;
   }
+  .stk .mc {
+    width: 56%;
+    padding: 4.6cqw;
+    border-radius: clamp(14px, 5.5cqw, 24px);
+  }
+  .stk .mc b {
+    font-size: clamp(0.9rem, 4.7cqw, 1.3rem);
+  }
+  .stk .mc:nth-child(1) {
+    top: 0;
+    left: 0;
+    right: auto;
+    transform: rotate(-3deg);
+  }
+  .stk .mc:nth-child(2) {
+    top: 31%;
+    left: 22%;
+    right: auto;
+    transform: rotate(2deg);
+  }
+  .stk .mc:nth-child(3) {
+    top: 62%;
+    left: 44%;
+    right: auto;
+    transform: rotate(-2deg);
+  }
+
+  /* collections list keeps its description while there is room (see ≤640) */
+  .idx a {
+    grid-template-columns: auto minmax(7rem, 0.9fr) minmax(0, 1.6fr) auto;
+    gap: var(--s5);
+  }
+
+  /* footer */
+  .ft,
   .fm {
     grid-template-columns: 1fr 1fr;
+  }
+  .fm {
     gap: var(--s6);
   }
   .fm > div:first-child {
-    grid-column: 1/-1;
+    grid-column: 1 / -1;
+  }
+
+  /* product page */
+  .product-cover {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 560px;
   }
 }
+
+/* when the stack is narrow its cards are too small for artwork behind the title */
+@container (max-width: 380px) {
+  .stk .mc .cv-art {
+    display: none;
+  }
+  .stk .mc .cv-bot {
+    gap: 8px;
+  }
+}
+
+/* steps / values: 3-up on tablets, single column on phones */
+@media (max-width: 960px) {
+  .steps,
+  .val {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s4);
+  }
+  .step,
+  .val div {
+    padding: 22px;
+  }
+  .step b {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 760px) {
+  .steps,
+  .val {
+    grid-template-columns: 1fr;
+  }
+  .step b {
+    margin-bottom: 14px;
+  }
+}
+
+/* product cover: landscape on mid-size screens, square on phones */
+@media (min-width: 481px) and (max-width: 960px) {
+  .product-cover {
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+}
+
+/* ---------- 6. ≤640px: phones ---------- */
 @media (max-width: 640px) {
-  .ann {
-    font-size: 0.72rem;
+  .head {
+    align-items: flex-start;
   }
-  .ann a {
-    display: block;
-    margin: 2px 0 0;
+  .head .more {
+    flex: none;
   }
+
+  /* hero */
   .hero h1 {
     max-width: none;
-  }
-  .stats {
-    gap: var(--s5) var(--s6);
-  }
-  .stats b {
-    font-size: 1.65rem;
   }
   .hero .btn,
   .band .btn {
@@ -65,23 +257,85 @@
   .hero .btn.o {
     margin: var(--s3) 0 0;
   }
+  .hs {
+    flex-direction: column;
+    border-radius: var(--r3);
+  }
+  .hs input {
+    padding: 12px 14px;
+  }
+  .stats {
+    gap: var(--s5) var(--s6);
+    justify-content: center;
+  }
+  .stats b {
+    font-size: 1.65rem;
+  }
+
+  /* grids */
   .grid {
+    gap: 32px var(--s4);
+    margin-top: var(--s6);
+  }
+  .idx a {
+    grid-template-columns: auto minmax(0, 1fr) auto;
     gap: var(--s4);
+    padding-block: 22px;
   }
-  .price {
-    font-size: 2.1rem;
+  .idx p {
+    display: none;
   }
-  .idm {
-    font-size: 5rem;
-  }
-  details p {
-    padding-right: 0;
+  .tools select {
+    width: 100%;
   }
   .filters {
     gap: 6px;
   }
   .chip {
     padding: 8px 14px;
+  }
+  .price {
+    font-size: 2.1rem;
+  }
+  details p {
+    padding-right: 0;
+  }
+
+  /* product page */
+  .product-detail .two {
+    gap: 26px;
+  }
+  .product-actions {
+    display: grid;
+  }
+  .product-actions .btn {
+    width: 100%;
+  }
+
+  /* article + blog */
+  .article-hero {
+    padding-bottom: 36px;
+  }
+  .article-count {
+    font-size: 0.75rem;
+  }
+  .article-intro {
+    font-size: 1.08rem;
+  }
+  .blog-toolbar {
+    gap: 12px;
+  }
+  .blog-search {
+    width: 100%;
+  }
+  .thanks-actions {
+    flex-wrap: wrap;
+  }
+
+  /* footer */
+  .ft,
+  .fm {
+    grid-template-columns: 1fr;
   }
   .fb {
     flex-direction: column;
@@ -93,29 +347,105 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
-@media (max-width: 400px) {
-  .ft {
-    grid-template-columns: 1fr;
+
+/* ---------- 7. ≤480px ---------- */
+@media (max-width: 480px) {
+  .product-cover {
+    padding: 22px;
   }
-  .ft div {
-    border-right: 0;
+  .mark-tile {
+    max-width: 100%;
   }
-  .fm {
-    grid-template-columns: 1fr;
+}
+
+/* ---------- 8. ≤380px: small phones (320–375) ---------- */
+@media (max-width: 380px) {
+  /* logo + search + cart + menu must fit in 320px */
+  #hdr {
+    padding-inline: 8px;
+  }
+  .hb {
+    gap: var(--s2);
+    padding: 0 6px 0 10px;
   }
   .logo {
-    font-size: 1.2rem;
+    gap: 8px;
+    font-size: 1.1rem;
+  }
+  .logo::before {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+  }
+  .ha {
+    gap: 2px;
+  }
+  .ib,
+  #mb {
+    width: 40px;
+    height: 40px;
+  }
+  .btn {
+    padding-inline: 20px;
+  }
+  .stats {
+    gap: var(--s4) var(--s5);
+  }
+  .article-content > section {
+    padding-left: 28px;
+  }
+  .cov {
+    padding: 18px;
+  }
+}
+
+/* ---------- 9. Short landscape screens (phones turned sideways) ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .buybar {
+    padding-block: 8px calc(8px + env(safe-area-inset-bottom));
+  }
+  #dr,
+  #ct {
+    padding: 20px;
+  }
+}
+
+/* ---------- 10. Touch devices: comfortable targets, no sticky hover ---------- */
+@media (pointer: coarse) {
+  footer a:not(.logo):not(.btn) {
+    margin: 0;
+    padding-block: 10px;
+  }
+  .fb a {
+    padding-block: 10px;
+  }
+  .hero-links a {
+    padding: 9px 16px;
+  }
+  .blog-filter {
+    min-height: 40px;
+  }
+  .more,
+  .article-back,
+  .blog-bottom a {
+    display: inline-block;
+    padding-block: 8px;
+  }
+  summary {
+    min-height: 48px;
   }
 }
 @media (hover: none) {
   .card:hover,
   .tile:hover,
-  .idc:hover,
   .btn:hover,
-  .ib:hover {
+  .ib:hover,
+  .blog-card:hover {
     transform: none;
   }
 }
+
+/* ---------- 11. Motion and print ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

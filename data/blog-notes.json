@@ -1,0 +1,622 @@
+[
+  {
+    "slug": "how-the-internet-works",
+    "title": "How the Internet Actually Works",
+    "description": "From typing a web address to seeing a page on your screen, explore how networks, DNS, packets, servers and browsers work together.",
+    "category": "Technology",
+    "read_time": "8 min read",
+    "date": "Technology explained",
+    "number": "01",
+    "theme": "internet",
+    "intro": "You type a website address, press Enter, and a page appears. It feels almost instant, but a remarkable chain of events happens in the background. Your device connects to a network, finds the right server, exchanges information and turns the response into a page you can use. Let's follow that journey, step by step.",
+    "sections": [
+      {
+        "heading": "First, what is the internet?",
+        "body": "The internet is a worldwide network of connected computer networks. Your phone, laptop, a school's Wi-Fi, a company's data centre and millions of other networks can communicate because they follow shared technical rules called protocols. The internet is not one giant computer, one app or one building. It is infrastructure that lets connected devices exchange data. The World Wide Web is one service that uses this infrastructure; email, online games, video calls and file transfers use it too."
+      },
+      {
+        "heading": "Your device joins a network",
+        "body": "When you connect to Wi-Fi or mobile data, your device gets a way to communicate with other devices. Usually, your home router or mobile network connects you to an Internet Service Provider (ISP). The ISP provides a path from your local network to the wider internet. Your device also uses an Internet Protocol (IP) address so data can be directed to the right destination. Think of an IP address as a network address: it helps networks know where information should go."
+      },
+      {
+        "heading": "DNS finds the website's address",
+        "body": "People remember names such as noviq-ar.pages.dev more easily than numeric IP addresses. Networks use IP addresses to route traffic, so your browser needs to discover the address associated with the domain name. It asks the Domain Name System (DNS), a distributed directory for domain names. The answer may already be cached on your device, router or DNS resolver. If not, DNS systems work together to find the relevant record. DNS helps locate a destination; it does not download the web page itself."
+      },
+      {
+        "heading": "Your browser sends a request",
+        "body": "Once it has the information needed to contact the site, the browser can send a request to the website's server. For a secure website, the connection normally uses HTTPS, which protects information in transit with encryption and helps verify that the browser is talking to the intended site. The browser's request identifies the resource it wants and includes useful details, such as the type of content it can accept. A website visit often involves several requests, not just one."
+      },
+      {
+        "heading": "Data travels in packets",
+        "body": "Information sent across the internet is broken into smaller units called packets. Each packet carries data along with information that helps it reach the destination. Routers examine network information and forward packets toward their next stop. Packets belonging to the same communication can take different routes, depending on network conditions. At the destination, the data is reassembled into the original information. This packet-based approach helps networks share capacity and carry many conversations at once."
+      },
+      {
+        "heading": "The server responds",
+        "body": "A server is a computer, or a system of computers, that provides resources or services to other devices. When a request arrives, the website's server decides what to send back. For a simple static site, it may return files that are already stored and ready to serve. For a dynamic site, it may run application code, read information from a database and create a response for that particular request. The response includes a status, headers and often a body containing the requested content."
+      },
+      {
+        "heading": "Your browser builds the page",
+        "body": "A web page commonly uses HTML, CSS and JavaScript. HTML describes the page's structure and content, CSS controls its appearance, and JavaScript can add behaviour and interaction. The browser reads these resources, may request additional files such as images and fonts, and then lays out and paints the page on your screen. That is why a single website visit can involve many small requests behind the scenes."
+      },
+      {
+        "heading": "Why websites can feel fast",
+        "body": "Websites use several techniques to reduce waiting. Browsers and servers can cache files so they do not need to be downloaded again every time. Content Delivery Networks (CDNs) store copies of website assets in locations closer to visitors, which can shorten delivery distance and reduce load on the main server. Compression makes many files smaller, while modern connection protocols help browsers load resources efficiently. A fast website is usually the result of several optimisations working together."
+      },
+      {
+        "heading": "Putting the journey together",
+        "body": "Imagine opening a website. Your device connects through a network and ISP; DNS helps find the site's IP address; the browser establishes a connection and sends an HTTPS request; packets carry that request to the server; the server returns a response; and your browser downloads and assembles the page. Some steps can happen in parallel, and cached information can skip repeated work. The exact route varies by website and network, but the core idea is the same: connected systems exchange requests and responses using shared rules."
+      }
+    ],
+    "takeaway": "The internet is a network of networks. DNS helps find destinations, IP and routers help move packets, servers provide resources, HTTPS protects connections, and browsers turn web files into the pages you see. A website loading in a second is really many coordinated steps happening very quickly.",
+    "terms": [
+      {
+        "term": "ISP",
+        "meaning": "Internet Service Provider - the company or organisation that connects your network to the internet."
+      },
+      {
+        "term": "IP address",
+        "meaning": "A network address used to identify a device or interface so data can be routed to it."
+      },
+      {
+        "term": "DNS",
+        "meaning": "Domain Name System - looks up information such as the IP address associated with a domain name."
+      },
+      {
+        "term": "Router",
+        "meaning": "A device that forwards data between networks."
+      },
+      {
+        "term": "Packet",
+        "meaning": "A small unit of data sent across a network."
+      },
+      {
+        "term": "Server",
+        "meaning": "A computer or system that provides data or services to other computers."
+      },
+      {
+        "term": "HTTPS",
+        "meaning": "The secure version of HTTP, using encryption to protect data in transit."
+      },
+      {
+        "term": "CDN",
+        "meaning": "Content Delivery Network - a distributed network that serves copies of content from locations closer to users."
+      }
+    ],
+    "quick_check": [
+      {
+        "question": "What does DNS help your browser find?",
+        "answer": "Information such as the IP address associated with a domain name."
+      },
+      {
+        "question": "What is the job of a router?",
+        "answer": "To forward data between networks toward its destination."
+      },
+      {
+        "question": "What do HTML, CSS and JavaScript contribute?",
+        "answer": "Structure, presentation and behaviour or interactivity, respectively."
+      }
+    ]
+  },
+  {
+    "slug": "git-vs-github",
+    "title": "Git vs GitHub: What's the Difference?",
+    "description": "They are often mentioned together, but Git and GitHub solve different problems. Here's the distinction in plain language.",
+    "category": "Development",
+    "read_time": "4 min read",
+    "date": "Developer basics",
+    "number": "02",
+    "theme": "git",
+    "intro": "Git and GitHub are closely connected, but they are not the same thing. Understanding the difference makes version control much easier to learn.",
+    "sections": [
+      {
+        "heading": "Git tracks changes",
+        "body": "Git is a version control system. It records changes to files over time, so you can review earlier versions, work on separate branches, and bring changes together."
+      },
+      {
+        "heading": "GitHub hosts Git repositories",
+        "body": "GitHub is an online platform for hosting Git repositories. It adds collaboration features such as pull requests, issue tracking, project discussions and code review."
+      },
+      {
+        "heading": "How they work together",
+        "body": "You use Git on your computer to commit changes. You can then push those commits to a remote repository on GitHub so your work is backed up and available to collaborators."
+      },
+      {
+        "heading": "Which one should you learn?",
+        "body": "Learn the core Git workflow first: initialise or clone a repository, check status, stage files, commit changes, and push or pull. Then explore GitHub's collaboration tools."
+      }
+    ],
+    "takeaway": "Git is the version control tool. GitHub is one platform that hosts Git repositories and makes collaboration easier."
+  },
+  {
+    "slug": "ui-vs-ux",
+    "title": "UI vs UX: Two Sides of Good Design",
+    "description": "A practical introduction to user interface and user experience, and why a product needs both to feel right.",
+    "category": "Design",
+    "read_time": "5 min read",
+    "date": "Design fundamentals",
+    "number": "03",
+    "theme": "design",
+    "intro": "UI and UX are often used together, but they describe different parts of designing a digital product. One is about the interface people interact with; the other is about the experience they have.",
+    "sections": [
+      {
+        "heading": "UI is the interface",
+        "body": "User Interface (UI) design focuses on the visible and interactive elements: typography, colour, spacing, buttons, forms, icons and layouts. It helps make an interface clear and consistent."
+      },
+      {
+        "heading": "UX is the experience",
+        "body": "User Experience (UX) design considers the complete journey. Can people understand what to do? Can they complete a task without unnecessary friction? Does the product meet their needs?"
+      },
+      {
+        "heading": "A simple example",
+        "body": "Think about a checkout page. UI includes the form fields, buttons and visual hierarchy. UX includes how easy it is to find the right option, enter details, understand delivery and complete the purchase."
+      },
+      {
+        "heading": "Why both matter",
+        "body": "A visually polished interface can still be confusing. A useful flow can also feel difficult if the interface is unclear. Strong products bring UI and UX together."
+      }
+    ],
+    "takeaway": "UI shapes the interface. UX shapes the overall experience. Good digital products need both to work together."
+  },
+  {
+    "slug": "html-css-javascript-how-websites-are-built",
+    "title": "HTML, CSS & JavaScript: How Websites Are Built",
+    "description": "Understand the three core technologies behind most websites, how they work together, and how a browser turns code into an interactive experience.",
+    "category": "Development",
+    "read_time": "9 min read",
+    "date": "Web development fundamentals",
+    "number": "04",
+    "theme": "code",
+    "intro": "Every time you open a website, you see text, images, menus, buttons and layouts working together. But these pieces do not appear by magic. Most websites rely on three core technologies: HTML, CSS and JavaScript. Each has a different responsibility, and understanding how they work together is one of the best starting points for learning web development.",
+    "sections": [
+      {
+        "heading": "A website is made of different layers",
+        "body": "Think of a website as a digital space with structure, appearance and behaviour. A page needs content and a meaningful arrangement, it needs visual styling so people can read and navigate it comfortably, and it may need interactive behaviour when someone clicks, types or submits something. HTML, CSS and JavaScript handle these responsibilities. They are not competing languages; they are tools designed to work together."
+      },
+      {
+        "heading": "HTML gives the page its structure",
+        "body": "HTML stands for HyperText Markup Language. It describes the content and structure of a web page using elements, often called tags. A heading can be marked as a heading, a paragraph as a paragraph, an image as an image, and a navigation area as navigation. This structure helps browsers interpret the page and gives assistive technologies useful information. HTML is not mainly responsible for how a page looks; it describes what the content means and how it is organised."
+      },
+      {
+        "heading": "CSS controls the presentation",
+        "body": "CSS stands for Cascading Style Sheets. It controls how HTML elements are presented: colours, fonts, spacing, borders, alignment, sizing and layout. CSS can arrange content into columns, create responsive layouts, add transitions and adapt a page to different screen sizes. Keeping styles in CSS rather than mixing them into every HTML element makes a project easier to maintain and update."
+      },
+      {
+        "heading": "JavaScript adds behaviour",
+        "body": "JavaScript is a programming language used to make web pages respond to users and work with data. It can open a menu, validate a form, update a shopping cart, filter a list or fetch information from a server. A page can be useful without JavaScript, but JavaScript enables many of the interactive experiences people expect from modern websites. It can run in the browser and, with environments such as Node.js, outside the browser too."
+      },
+      {
+        "heading": "How the three technologies work together",
+        "body": "Imagine a simple sign-up form. HTML creates the form, its labels, input fields and submit button. CSS controls the width, spacing, colours and focus styles. JavaScript can check whether required fields have been filled in and show helpful feedback. When the form is submitted, the page may send the information to a server for processing. Each technology contributes a different part of the experience."
+      },
+      {
+        "heading": "What happens inside the browser?",
+        "body": "The browser downloads the page's resources and interprets them. It parses HTML to build a document structure, reads CSS to calculate styles and layout, and executes JavaScript when needed. It then paints the visible result on the screen. These activities can overlap, and the browser may request additional resources such as images, fonts or scripts while the page loads. This is why a web page is better understood as a collection of connected resources than as one single file."
+      },
+      {
+        "heading": "Why responsive design matters",
+        "body": "People use websites on phones, tablets, laptops and large monitors. A layout that works only at one width can become difficult to read or use elsewhere. Responsive design uses flexible layouts, relative sizing and CSS media queries to adapt content to available space. Good responsive design is not simply shrinking a desktop page: it considers readable text, comfortable spacing, touch-friendly controls and a sensible content order on smaller screens."
+      },
+      {
+        "heading": "How to think about a small web project",
+        "body": "When planning a page, start by identifying its content and structure. Use HTML for meaningful sections and controls, CSS for the visual system and responsive layout, and JavaScript only where behaviour is needed. Keep files organised, use clear names and test the page at different viewport sizes. This separation makes it easier to find problems: a missing heading is likely an HTML issue, awkward spacing is often CSS, and a button that does nothing may need JavaScript or a working destination."
+      },
+      {
+        "heading": "The bigger picture",
+        "body": "HTML, CSS and JavaScript are the foundation of front-end web development, but they are only part of a complete web application. A larger product may also use a backend, database, authentication service, APIs and hosting infrastructure. Learning the front-end trio first gives you a clear understanding of what happens in the browser before you add those other systems."
+      }
+    ],
+    "takeaway": "HTML describes the structure and meaning of a page, CSS controls its presentation, and JavaScript adds behaviour. Together, they let developers create websites that are understandable, visually clear, interactive and responsive.",
+    "terms": [
+      {
+        "term": "HTML",
+        "meaning": "HyperText Markup Language - describes the structure and content of a web page."
+      },
+      {
+        "term": "CSS",
+        "meaning": "Cascading Style Sheets - controls the visual presentation and layout of web content."
+      },
+      {
+        "term": "JavaScript",
+        "meaning": "A programming language commonly used to add interaction and dynamic behaviour to websites."
+      },
+      {
+        "term": "DOM",
+        "meaning": "Document Object Model - a structured representation of a web page that scripts and browsers can work with."
+      },
+      {
+        "term": "Responsive design",
+        "meaning": "An approach to building layouts that adapt to different screen sizes and devices."
+      }
+    ],
+    "quick_check": [
+      {
+        "question": "Which technology describes the structure of a web page?",
+        "answer": "HTML describes the page's structure and content."
+      },
+      {
+        "question": "Which technology is mainly responsible for visual styling?",
+        "answer": "CSS controls colours, typography, spacing and layout."
+      },
+      {
+        "question": "What might JavaScript do when a user submits a form?",
+        "answer": "It can validate input, provide feedback or send data for processing."
+      }
+    ]
+  },
+  {
+    "slug": "apis-explained-how-applications-communicate",
+    "title": "APIs Explained: How Applications Talk to Each Other",
+    "description": "Learn what an API is, how requests and responses work, and how apps use APIs to exchange information and services.",
+    "category": "Technology",
+    "read_time": "9 min read",
+    "date": "Technology explained",
+    "number": "05",
+    "theme": "api",
+    "intro": "A weather app can show the forecast without collecting weather measurements itself. A map can display places and routes using information from other services. A payment page can connect to a payment provider. These systems often communicate through APIs. APIs are one of the important building blocks of modern software, allowing different applications to exchange information in a structured way.",
+    "sections": [
+      {
+        "heading": "What is an API?",
+        "body": "API stands for Application Programming Interface. It is a defined way for one piece of software to request information or functionality from another. An API describes what can be requested, how a request should be formatted and what kind of response to expect. It acts as a boundary between systems, so an application can use a service without needing to know every detail of how that service is built internally."
+      },
+      {
+        "heading": "A familiar real-world analogy",
+        "body": "Imagine ordering food at a restaurant. You choose from a menu and give your order to the staff. The kitchen prepares it, and the staff brings back the result. You do not need to enter the kitchen or understand how every dish is prepared. An API plays a similar role: it provides an agreed way to ask for something and receive a result. The analogy is not exact, but it helps explain why a clear interface matters."
+      },
+      {
+        "heading": "Requests and responses",
+        "body": "In a common web API interaction, a client sends a request to a server. The request may specify an address, an operation, headers and sometimes a body containing data. The server processes the request and returns a response. That response can include a status code, headers and data, often formatted as JSON. The client then uses the response in its own interface or workflow. Not every API uses HTTP, but HTTP-based APIs are especially common on the web."
+      },
+      {
+        "heading": "Understanding endpoints and HTTP methods",
+        "body": "An endpoint is a specific address where an API makes a resource or operation available. HTTP methods describe the kind of action being requested. GET commonly retrieves information, POST commonly submits data or creates a resource, PUT or PATCH commonly updates a resource, and DELETE commonly removes one. The exact behaviour depends on the API's design and documentation. A well-designed API makes these operations predictable."
+      },
+      {
+        "heading": "Why JSON appears so often",
+        "body": "JSON stands for JavaScript Object Notation. It is a lightweight text format for representing structured data using objects, arrays, strings, numbers, booleans and null values. It is popular because it is readable and supported by many programming languages. For example, a weather service might return a city name, temperature and condition in a JSON object. The application reads those fields and displays them in a format that makes sense to the user."
+      },
+      {
+        "heading": "Authentication and API keys",
+        "body": "Some APIs are public to use within limits, while others require an application or user to prove it has permission. Authentication methods can include API keys, access tokens or other credentials. These help a service identify the caller and apply permissions or usage limits. Secret keys should not be placed in public front-end code, because visitors can inspect browser-delivered files. Sensitive credentials generally belong in a secure server-side environment, with access restricted to the services that need them."
+      },
+      {
+        "heading": "What can go wrong?",
+        "body": "An API request may fail because the network is unavailable, the address is incorrect, the caller lacks permission, the service is temporarily down or the request exceeds a usage limit. Responses often communicate the result through HTTP status codes. A 2xx response generally indicates success, 4xx usually points to a problem with the request or permissions, and 5xx indicates a server-side problem. Applications should handle errors clearly rather than leaving users with a blank screen."
+      },
+      {
+        "heading": "Where APIs are used",
+        "body": "APIs connect many familiar services. A travel application may request map data, a store may use a payment provider, and a dashboard may retrieve information from a business system. Developers also use APIs to connect their own front end to their own backend. This reduces duplication: instead of rebuilding every capability, an application can use a specialised service through its documented interface."
+      },
+      {
+        "heading": "A good way to start learning APIs",
+        "body": "Start with a public API that provides sample or non-sensitive data. Read its documentation, identify an endpoint and understand the expected parameters and response. Try a simple GET request, inspect the JSON response and display a small part of it on a page. Then learn how to handle loading states, errors, rate limits and authentication. Always check the API's terms, data rules and usage limits before building around it."
+      }
+    ],
+    "takeaway": "An API is a defined interface that lets software systems communicate. Clients send requests, services process them and return responses. Understanding endpoints, HTTP methods, JSON, authentication and error handling makes it easier to build applications that connect to other services.",
+    "terms": [
+      {
+        "term": "API",
+        "meaning": "Application Programming Interface - a defined way for software to request data or functionality from another system."
+      },
+      {
+        "term": "Endpoint",
+        "meaning": "A specific API address where a resource or operation is available."
+      },
+      {
+        "term": "HTTP",
+        "meaning": "Hypertext Transfer Protocol - a common protocol used to transfer web requests and responses."
+      },
+      {
+        "term": "JSON",
+        "meaning": "A text format used to represent structured data."
+      },
+      {
+        "term": "Authentication",
+        "meaning": "The process of verifying the identity of a user, application or service."
+      },
+      {
+        "term": "Rate limit",
+        "meaning": "A restriction on how many requests a caller can make within a period."
+      }
+    ],
+    "quick_check": [
+      {
+        "question": "What does an API allow two applications to do?",
+        "answer": "Exchange information or use functionality through a defined interface."
+      },
+      {
+        "question": "What is an endpoint?",
+        "answer": "A specific address where an API exposes a resource or operation."
+      },
+      {
+        "question": "Why should secret API keys not be placed in public front-end code?",
+        "answer": "Visitors can inspect browser-delivered code and potentially copy the key."
+      }
+    ]
+  },
+  {
+    "slug": "what-is-a-database-how-data-is-stored",
+    "title": "What Is a Database? Understanding How Data Is Stored",
+    "description": "Explore how databases organise information, how tables and records work, and why applications rely on databases to remember data.",
+    "category": "Technology",
+    "read_time": "9 min read",
+    "date": "Technology explained",
+    "number": "06",
+    "theme": "database",
+    "intro": "When you create an account, save a note, place an order or update your profile, an application needs a reliable way to keep that information. A database provides an organised way to store, manage and retrieve data. It is one of the core parts of many digital products, from small personal tools to large online platforms.",
+    "sections": [
+      {
+        "heading": "What is a database?",
+        "body": "A database is an organised collection of information that can be stored, searched, updated and managed. Instead of keeping important application data in scattered files, a database provides structures and rules for working with it. A school system might store students and courses, while an online store might store products, customers and orders. The database helps the application find the right information when it is needed."
+      },
+      {
+        "heading": "Why applications need databases",
+        "body": "An application often needs information to remain available after a page is closed or a device is restarted. A database can persist records so users can return to their accounts, view previous orders or continue working with saved information. Databases also help multiple users and application processes work with shared information in a controlled way. Without suitable data storage, many applications would have to recreate their information every time they were opened."
+      },
+      {
+        "heading": "Tables, rows and columns",
+        "body": "In a relational database, information is commonly organised into tables. A table contains rows and columns. Each row represents a record, such as one customer, and each column represents a property, such as a name or email address. A customers table might have columns for customer_id, name and email. This tabular structure makes information easier to organise and query, especially when the relationships between records are clearly defined."
+      },
+      {
+        "heading": "How tables are connected",
+        "body": "Relational databases can connect information across multiple tables. For example, an online store might keep customer details in a Customers table and purchase details in an Orders table. An order can refer to the customer who placed it using a customer ID. This avoids repeating all customer details in every order record. Primary keys identify records, while foreign keys can refer to records in another table and help maintain relationships."
+      },
+      {
+        "heading": "What is SQL?",
+        "body": "SQL stands for Structured Query Language. It is widely used to work with relational databases. Developers use SQL to create tables, insert records, retrieve information, update values and delete records. A SELECT query can retrieve matching rows, while INSERT adds new data. SQL gives applications a structured way to ask the database for exactly the information they need."
+      },
+      {
+        "heading": "Relational and non-relational databases",
+        "body": "Relational databases organise data into related tables with a defined structure. They are useful when relationships and consistency are important. Non-relational databases, often called NoSQL databases, use other models such as documents, key-value pairs, wide-column structures or graphs. These models can suit different data shapes and application needs. Neither category is automatically best: the right choice depends on the data, access patterns, consistency needs and scale of the project."
+      },
+      {
+        "heading": "What happens when an app saves information?",
+        "body": "Consider a user changing their profile name. The application collects the new value and sends it to a backend service. The backend checks that the request is allowed and that the value is valid. It then sends an appropriate operation to the database. The database stores the change and returns a result. The application can then show the updated name. This separation helps keep database access and important validation rules out of the public interface."
+      },
+      {
+        "heading": "Keeping data reliable and protected",
+        "body": "A database should protect information from accidental loss, unauthorised access and inconsistent updates. Backups provide a way to recover data after certain failures. Access controls limit which users or services can read or change records. Transactions help group related operations so they succeed or fail together according to the database's rules. Applications should also collect only the information they need and handle personal data responsibly."
+      },
+      {
+        "heading": "Choosing a database for a project",
+        "body": "For a small project, begin with the simplest database that meets the requirements. Consider what kinds of information will be stored, how records relate to one another, how frequently data changes and whether multiple users need access. Also consider backups, security, hosting and future maintenance. Learning basic SQL and understanding tables, keys and relationships is a useful foundation before choosing a more specialised database system."
+      }
+    ],
+    "takeaway": "A database stores information in an organised way so applications can retrieve and update it reliably. Relational databases use tables, rows, columns and relationships; SQL is a common language for working with them. Good database design also considers security, backups and data consistency.",
+    "terms": [
+      {
+        "term": "Database",
+        "meaning": "An organised collection of information that can be stored, managed and retrieved."
+      },
+      {
+        "term": "Table",
+        "meaning": "A relational database structure made up of rows and columns."
+      },
+      {
+        "term": "Record",
+        "meaning": "One entry or row in a table."
+      },
+      {
+        "term": "Primary key",
+        "meaning": "A field or combination of fields that uniquely identifies a record in a table."
+      },
+      {
+        "term": "Foreign key",
+        "meaning": "A field that refers to a key in another table to represent a relationship."
+      },
+      {
+        "term": "SQL",
+        "meaning": "Structured Query Language - a language used to work with relational databases."
+      },
+      {
+        "term": "Backup",
+        "meaning": "A separate copy of data that can help restore information after loss or damage."
+      }
+    ],
+    "quick_check": [
+      {
+        "question": "What does a row usually represent in a relational database table?",
+        "answer": "A single record, such as one customer or one order."
+      },
+      {
+        "question": "What is SQL used for?",
+        "answer": "To create, retrieve, update and manage data in relational databases."
+      },
+      {
+        "question": "Why might an Orders table store a customer ID?",
+        "answer": "The ID can link an order to a customer record without repeating all customer details."
+      }
+    ]
+  },
+  {
+    "slug": "from-code-to-website-how-deployment-works",
+    "title": "From Code to Website: How Deployment Works",
+    "description": "Follow a website from a developer's computer to the public internet. Learn about hosting, domains, DNS, builds, servers and deployment workflows.",
+    "category": "Development",
+    "read_time": "10 min read",
+    "date": "Web development fundamentals",
+    "number": "07",
+    "theme": "deploy",
+    "intro": "You have written the HTML, styled the page, added JavaScript and tested everything on your computer. But how does someone else open that website from their phone or laptop? The answer is deployment. Deployment is the process of making an application available in an environment where its intended users can access it. Understanding the journey from local files to a live website makes web development feel much more complete.",
+    "sections": [
+      {
+        "heading": "What does deployment mean?",
+        "body": "Deployment means putting an application or a new version of it into an environment where it can be used. For a website, this often means making its files available through internet-connected hosting infrastructure. Deployment can be manual or automated. It may involve preparing files, building the project, configuring settings and checking that the live version works as expected."
+      },
+      {
+        "heading": "Local development versus a live website",
+        "body": "During development, a website often runs on your own computer using a local development server. An address such as localhost is available to your device, not automatically to everyone on the internet. A live website is served from hosting infrastructure that visitors can reach. The local version is where you build and test; the deployed version is what users access."
+      },
+      {
+        "heading": "What is web hosting?",
+        "body": "Web hosting is a service that makes website files or application functionality available over a network. For a static website, a host can serve files such as HTML, CSS, JavaScript, images and fonts. A dynamic application may also need a server environment to run backend code and connect to a database. Different hosting platforms support different project types, so it is important to understand what your application requires before choosing one."
+      },
+      {
+        "heading": "Domains and DNS",
+        "body": "A domain name is the human-readable address people use to visit a website. DNS helps translate that domain into the information needed to reach the relevant hosting service. After a domain is configured with the correct DNS records, visitors can use it instead of remembering a technical server address. DNS changes may take time to become visible across different networks because records can be cached."
+      },
+      {
+        "heading": "What is a build?",
+        "body": "Some projects can be published directly as files. Others use tools that process source code into an output folder ready for hosting. This process is called a build. A build tool may bundle JavaScript, process styles, optimise assets or transform modern source code into browser-ready files. The output directory is often called dist or build, though the name depends on the project configuration. The hosting platform needs to publish the correct output."
+      },
+      {
+        "heading": "A typical deployment workflow",
+        "body": "A common workflow begins with code on a developer's computer. The developer tests the changes, commits them to version control and pushes them to a remote repository. A hosting platform can detect the update, install the project's dependencies, run its build command if needed and publish the output. The developer then checks the deployed website. This connection between version control and hosting makes updates more repeatable."
+      },
+      {
+        "heading": "Static sites and backend applications",
+        "body": "A static site can often be delivered directly by a content delivery network or static hosting platform. It does not need a server to generate every page for each visitor. A backend application is different: it may need code running on a server to handle authentication, business logic, API requests or database operations. A project with a front end and a Python backend, for example, may need separate hosting environments unless the chosen platform supports both."
+      },
+      {
+        "heading": "Environment variables and configuration",
+        "body": "Applications often need configuration values that differ between development and production, such as API base addresses or service credentials. Environment variables let a deployment environment provide these values without hard-coding them into the source files. Secret values must be stored using the hosting platform's protected settings and should never be exposed in public browser code. Configuration should be checked carefully before a release."
+      },
+      {
+        "heading": "After deployment: test and maintain",
+        "body": "A successful upload does not guarantee that every part of a website works. Check important pages, navigation, forms, images, mobile layouts and any external services. Review the browser console and deployment logs when something fails. Keep dependencies updated, maintain backups where appropriate and monitor errors. Deployment is not a one-time finish line; websites need ongoing maintenance as content, software and user needs change."
+      }
+    ],
+    "takeaway": "Deployment makes a project available to its users. A typical website workflow includes local development, version control, hosting, domain and DNS configuration, a build when required, publishing and post-deployment checks. The right setup depends on whether the project is static or needs a running backend.",
+    "terms": [
+      {
+        "term": "Deployment",
+        "meaning": "The process of releasing an application into an environment where it can be used."
+      },
+      {
+        "term": "Hosting",
+        "meaning": "Infrastructure or a service that makes website files or application functionality available."
+      },
+      {
+        "term": "Domain",
+        "meaning": "A human-readable internet name used to reach a website or service."
+      },
+      {
+        "term": "DNS",
+        "meaning": "Domain Name System - helps locate the network destination associated with a domain name."
+      },
+      {
+        "term": "Build",
+        "meaning": "A process that prepares source code and assets for delivery or execution."
+      },
+      {
+        "term": "Environment variable",
+        "meaning": "A configuration value supplied to an application by its runtime or hosting environment."
+      },
+      {
+        "term": "CDN",
+        "meaning": "Content Delivery Network - a distributed system that delivers content from locations closer to users."
+      }
+    ],
+    "quick_check": [
+      {
+        "question": "What is the difference between localhost and a live website?",
+        "answer": "Localhost usually refers to a service running on your own device; a live website is hosted so other users can access it."
+      },
+      {
+        "question": "Why might a project need a build command?",
+        "answer": "To bundle, transform or optimise source files into browser-ready output."
+      },
+      {
+        "question": "Why might a front end and backend need different hosting?",
+        "answer": "Some static hosting platforms serve files but do not run backend application code."
+      }
+    ]
+  },
+  {
+    "slug": "cybersecurity-basics-staying-safe-online",
+    "title": "Cybersecurity Basics: Staying Safe in the Digital World",
+    "description": "Understand common online risks, safer account habits, software updates, privacy and the basic principles that help protect digital information.",
+    "category": "Technology",
+    "read_time": "10 min read",
+    "date": "Digital safety fundamentals",
+    "number": "08",
+    "theme": "security",
+    "intro": "We use digital services for communication, learning, shopping, entertainment and work. That convenience also means we need to think carefully about the information we share and the accounts we use. Cybersecurity is not only a concern for large companies or technical specialists. Everyday habits such as using unique passwords, checking links and keeping software updated can make a meaningful difference.",
+    "sections": [
+      {
+        "heading": "What is cybersecurity?",
+        "body": "Cybersecurity is the practice of protecting devices, accounts, networks and information from unauthorised access, disruption or misuse. It includes technology such as encryption and access controls, but it also depends on people making informed decisions. A secure system aims to protect information while allowing authorised users to access the services they need."
+      },
+      {
+        "heading": "The three goals: confidentiality, integrity and availability",
+        "body": "A useful way to understand information security is the CIA triad. Confidentiality means information is accessible only to people or systems that are authorised. Integrity means information remains accurate and is not changed improperly. Availability means systems and information are accessible when needed. These goals can sometimes compete, so security decisions often involve balancing protection, usability and reliability."
+      },
+      {
+        "heading": "Recognising phishing and suspicious messages",
+        "body": "Phishing is a form of deception in which someone tries to trick a person into revealing information, opening an unsafe attachment or taking an unwanted action. Messages may imitate a familiar organisation, create urgency or use links that do not lead to the genuine service. Pause before responding. Check the sender and destination carefully, and when a message concerns an account or payment, visit the service through its official app or by typing its known address rather than relying on an unexpected link."
+      },
+      {
+        "heading": "Why password habits matter",
+        "body": "A password protects access to an account, so reusing the same password across many services creates unnecessary risk. If one service is affected by a data breach, reused credentials may put other accounts at risk too. Use a long, unique password for each important account. A reputable password manager can help create and store unique passwords. Where available, enable multi-factor authentication so a password alone is not the only requirement for signing in."
+      },
+      {
+        "heading": "What is multi-factor authentication?",
+        "body": "Multi-factor authentication (MFA) asks for more than one kind of proof when someone signs in. Depending on the service, this may combine something you know, such as a password, with something you have, such as an authenticator device, or another supported verification method. MFA can make account access more difficult for an unauthorised person even if a password has been exposed. Keep recovery options up to date and never share one-time verification codes with someone who contacts you unexpectedly."
+      },
+      {
+        "heading": "Updates are part of security",
+        "body": "Software updates often include fixes for security weaknesses as well as new features and bug fixes. Delaying updates for long periods can leave known issues uncorrected. Enable automatic updates where practical, install updates from trusted sources and remove applications you no longer use. Updates are not a guarantee of safety, but they are an important part of maintaining a device and its software."
+      },
+      {
+        "heading": "Protecting information on networks",
+        "body": "When using online services, look for secure connections and be thoughtful about the information you send. HTTPS encrypts data in transit between a browser and a website, helping protect it from being read or altered while travelling across the network. It does not prove that a website is honest or that everything it offers is safe. On shared devices, sign out of accounts when finished and avoid saving sensitive information where other users can access it."
+      },
+      {
+        "heading": "Privacy: share less and check permissions",
+        "body": "Many apps request access to information or device features such as location, contacts, camera and microphone. Review whether each permission is necessary for the feature you want to use. Check privacy settings periodically and avoid posting sensitive personal details publicly. Think about who can see shared files, photos and profile information. Limiting unnecessary sharing reduces the amount of information that could be exposed if an account or service is compromised."
+      },
+      {
+        "heading": "What to do when something seems wrong",
+        "body": "If you suspect an account has been accessed without permission, use the service's official recovery and security settings. Change the affected password from a trusted device, review active sessions and sign out devices you do not recognise. Enable MFA, check recovery details and contact the service through its official support channel if needed. If a message or website looks suspicious, do not continue interacting with it. For work or school accounts, follow the organisation's reporting process."
+      },
+      {
+        "heading": "Cybersecurity is an ongoing habit",
+        "body": "No single tool can prevent every risk. Strong account practices, careful decisions, updated software, privacy awareness and reliable recovery options work together. The goal is not to become afraid of using technology; it is to understand common risks and make sensible choices. Small, consistent habits can help protect your information and make your digital life more resilient."
+      }
+    ],
+    "takeaway": "Cybersecurity combines technology and everyday decisions. Protect accounts with unique passwords and MFA, recognise suspicious messages, keep software updated, review permissions and use official recovery channels if something goes wrong. Security is an ongoing practice, not a one-time setting.",
+    "terms": [
+      {
+        "term": "Cybersecurity",
+        "meaning": "The practice of protecting devices, systems, accounts and information from digital threats."
+      },
+      {
+        "term": "Phishing",
+        "meaning": "A deceptive attempt to trick someone into revealing information or taking an unsafe action."
+      },
+      {
+        "term": "MFA",
+        "meaning": "Multi-factor authentication - a sign-in process that requires more than one kind of verification."
+      },
+      {
+        "term": "Encryption",
+        "meaning": "A method of transforming information so it cannot be easily understood without the appropriate key."
+      },
+      {
+        "term": "Confidentiality",
+        "meaning": "Ensuring information is accessible only to authorised people or systems."
+      },
+      {
+        "term": "Integrity",
+        "meaning": "Maintaining the accuracy and trustworthiness of information."
+      },
+      {
+        "term": "Availability",
+        "meaning": "Ensuring systems and information can be accessed when they are needed."
+      }
+    ],
+    "quick_check": [
+      {
+        "question": "What are the three goals in the CIA triad?",
+        "answer": "Confidentiality, integrity and availability."
+      },
+      {
+        "question": "Why is reusing the same password risky?",
+        "answer": "If one service is compromised, the reused password may put other accounts at risk."
+      },
+      {
+        "question": "Does HTTPS guarantee that a website is trustworthy?",
+        "answer": "No. HTTPS protects the connection, but it does not prove that the website itself is honest or safe."
+      }
+    ]
+  }
+]

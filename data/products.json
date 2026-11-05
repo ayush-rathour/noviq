@@ -205,5 +205,43 @@
       "Future updates to included files"
     ],
     "prereq": "None."
+  },
+  {
+    "id": "javascript-essentials-quick-reference",
+    "title": "JavaScript Essentials Quick Reference",
+    "slug": "javascript-essentials-quick-reference",
+    "category": "learn",
+    "price_inr": 0,
+    "file": "assets/free/javascript-essentials-quick-reference.pdf",
+    "description": "A practical visual reference to JavaScript fundamentals, functions, arrays, DOM events and asynchronous code.",
+    "level": "Beginner",
+    "format": ["PDF"],
+    "audience": "Beginners learning JavaScript who want a clear companion while building web projects.",
+    "includes": [
+      "Variables, values and operators",
+      "Conditions, loops, functions and arrays",
+      "DOM events and async/await examples",
+      "Debugging checklist and practice challenges"
+    ],
+    "prereq": "Basic familiarity with HTML is helpful, but not required."
+  },
+  {
+    "id": "git-github-starter-guide",
+    "title": "Git & GitHub Starter Guide",
+    "slug": "git-github-starter-guide",
+    "category": "learn",
+    "price_inr": 0,
+    "file": "assets/free/git-github-starter-guide.pdf",
+    "description": "A practical beginner guide to version control, commits, branches, remotes and collaborative workflows.",
+    "level": "Beginner",
+    "format": ["PDF"],
+    "audience": "Learners and builders who want to manage project changes and collaborate with confidence.",
+    "includes": [
+      "Git and GitHub explained",
+      "Essential terminal workflow",
+      "Branches, remotes and pull requests",
+      "Useful commands and safe-practice checklist"
+    ],
+    "prereq": "A computer with Git installed for hands-on practice."
   }
 ]

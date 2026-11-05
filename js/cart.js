@@ -130,7 +130,10 @@ const showToast = (message) => {
     );
     el = $("#toast");
     el.addEventListener("mouseenter", () => clearTimeout(toastTimer));
-    el.addEventListener("mouseleave", () => (toastTimer = setTimeout(hideToast, 2200)));
+    el.addEventListener(
+      "mouseleave",
+      () => (toastTimer = setTimeout(hideToast, 2200)),
+    );
   }
   el.innerHTML = `<span class="t-ico">${icon("check", 16)}</span><span class="t-msg"></span><button type="button" data-open-list>View list</button>`;
   el.querySelector(".t-msg").textContent = message;
