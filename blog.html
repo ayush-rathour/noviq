@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#0d1230" />
+    <meta property="og:site_name" content="NOVIQ" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Blog Notes | NOVIQ</title>
+    <meta
+      name="description"
+      content="Clear, practical Blog Notes on technology, design and development from NOVIQ."
+    />
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/icons/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div id="hdr"></div>
+    <main id="main">
+      <section class="light ph">
+        <div class="w">
+          <p class="eyebrow">READ. UNDERSTAND. BUILD.</p>
+          <h1>Blog Notes</h1>
+          <p class="lead">
+            Clear, practical notes on technology, design and development. Made
+            to help you understand the things behind the tools you use.
+          </p>
+        </div>
+      </section>
+      <section class="light blog-library" id="blog-notes" style="padding-top: 16px">
+        <div class="w">
+          <div class="blog-toolbar">
+            <div
+              class="blog-filters"
+              role="group"
+              aria-label="Filter Blog Notes"
+            >
+              <button
+                class="blog-filter active"
+                type="button"
+                data-blog-filter="all"
+                aria-pressed="true"
+              >
+                All notes
+              </button>
+              <button
+                class="blog-filter"
+                type="button"
+                data-blog-filter="Technology"
+                aria-pressed="false"
+              >
+                Technology
+              </button>
+              <button
+                class="blog-filter"
+                type="button"
+                data-blog-filter="Development"
+                aria-pressed="false"
+              >
+                Development
+              </button>
+              <button
+                class="blog-filter"
+                type="button"
+                data-blog-filter="Design"
+                aria-pressed="false"
+              >
+                Design
+              </button>
+            </div>
+            <label class="blog-search"
+              ><span class="sr-only">Search Blog Notes</span
+              ><span aria-hidden="true">⌕</span
+              ><input
+                id="blog-search"
+                type="search"
+                placeholder="Search notes..."
+                autocomplete="off"
+            /></label>
+          </div>
+          <div class="blog-grid" id="blog-grid" aria-live="polite"></div>
+          <div class="blog-bottom">
+            <span>Thoughtful reads. No noise.</span
+            ><a href="#top">Back to top ↑</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="ftr"></div>
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/blog-cover.js"></script>
+    <script src="js/blog-notes.js"></script>
+  </body>
+</html>

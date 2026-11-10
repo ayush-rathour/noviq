@@ -7,13 +7,17 @@ const NAV = [
   ["explore", "Explore"],
   ["bundles", "Bundles"],
   ["free-resources", "Free"],
+  ["blog", "Blog"],
   ["about", "About"],
   ["contact", "Contact"],
 ];
 const CATS = ["build", "learn", "organize", "practice"];
 const cap = (s) => s[0].toUpperCase() + s.slice(1);
 const pg = location.pathname.split("/").pop().replace(".html", "") || "index";
-const on = (h) => h == pg || (h == "explore" && pg == "product");
+const on = (h) =>
+  h == pg ||
+  (h == "explore" && pg == "product") ||
+  (h == "blog" && pg == "blog-note");
 const ask = enquiry("Question", "I have a question about your resources.");
 
 // ---- Shared visuals: icons and category cover art --------------------------
@@ -65,7 +69,7 @@ $("#hdr").innerHTML =
 
 document.body.insertAdjacentHTML(
   "beforeend",
-  `<div id="ov"></div><aside id="dr" aria-label="Menu"><div class="dh"><a class="logo" href="index.html"><span>NOV<b>IQ</b></span></a><button class="ib dx" aria-label="Close menu">✕</button></div><div class="dl">${[["index", "Home"], ...NAV].map(([h, t]) => `<a class="${h == pg ? "on" : ""}" href="${h}.html">${t}</a>`).join("")}</div><div class="dc">${CATS.map((c) => `<a href="explore.html?cat=${c}">${cap(c)}</a>`).join("")}</div><a class="btn" href="${ask}">Ask a question</a><p class="dm">Files are delivered privately after payment is confirmed.</p></aside>`,
+  `<div id="ov"></div><aside id="dr" aria-label="Menu"><div class="dh"><a class="logo" href="index.html"><span>NOV<b>IQ</b></span></a><button class="ib dx" aria-label="Close menu">✕</button></div><div class="dl">${[["index", "Home"], ...NAV].map(([h, t]) => `<a class="${on(h) ? "on" : ""}" href="${h}.html">${t}</a>`).join("")}</div><div class="dc">${CATS.map((c) => `<a href="explore.html?cat=${c}">${cap(c)}</a>`).join("")}</div><a class="btn" href="${ask}">Ask a question</a><p class="dm">Files are delivered privately after payment is confirmed.</p></aside>`,
 );
 
 const od = (o) => {
@@ -80,7 +84,7 @@ document
 addEventListener("keydown", (e) => e.key == "Escape" && od(false));
 
 $("#ftr").innerHTML =
-  `<footer><div class="ft w"><div><b>Original work</b>Original or properly licensed only</div><div><b>Private delivery</b>Sent after payment is confirmed</div><div><b>Human support</b>Real replies from the team</div><div><b>Clear details</b>Contents, level and formats up front</div></div><div class="w"><div class="fm"><div><a class="logo" href="index.html"><span>NOV<b>IQ</b></span></a><p style="margin:16px 0 22px;max-width:34ch">Practical digital resources for learners, builders and creators.</p><a class="btn sm" href="${ask}">Ask a question</a></div><div><h4>Shop</h4>${CATS.map((c) => `<a href="explore.html?cat=${c}">${cap(c)}</a>`).join("")}<a href="bundles.html">Bundles</a></div><div><h4>Company</h4><a href="about.html">About</a><a href="free-resources.html">Free resources</a><a href="contact.html">Contact</a></div><div><h4>Support</h4><a href="contact.html">Order enquiry</a><a href="about.html#orders">How delivery works</a><a href="contact.html#faq">FAQ and refunds</a><a href="about.html#standards">Product standards</a></div></div><div class="fb"><span>© ${new Date().getFullYear()} NOVIQ · Made in India</span><a href="#top" aria-label="Back to top">Back to top ↑</a></div></div><div class="big" aria-hidden="true">NOVIQ</div></footer>`;
+  `<footer><div class="ft w"><div><b>Original work</b>Original or properly licensed only</div><div><b>Private delivery</b>Sent after payment is confirmed</div><div><b>Human support</b>Real replies from the team</div><div><b>Clear details</b>Contents, level and formats up front</div></div><div class="w"><div class="fm"><div><a class="logo" href="index.html"><span>NOV<b>IQ</b></span></a><p style="margin:16px 0 22px;max-width:34ch">Practical digital resources for learners, builders and creators.</p><a class="btn sm" href="${ask}">Ask a question</a></div><div><h4>Shop</h4>${CATS.map((c) => `<a href="explore.html?cat=${c}">${cap(c)}</a>`).join("")}<a href="bundles.html">Bundles</a></div><div><h4>Company</h4><a href="about.html">About</a><a href="free-resources.html">Free resources</a><a href="blog.html">Blog Notes</a><a href="contact.html">Contact</a></div><div><h4>Support</h4><a href="contact.html">Order enquiry</a><a href="about.html#orders">How delivery works</a><a href="contact.html#faq">FAQ and refunds</a><a href="about.html#standards">Product standards</a></div></div><div class="fb"><span>© ${new Date().getFullYear()} NOVIQ · Made in India</span><a href="#top" aria-label="Back to top">Back to top ↑</a></div></div><div class="big" aria-hidden="true">NOVIQ</div></footer>`;
 
 const cf = $("#cf");
 if (cf) {
