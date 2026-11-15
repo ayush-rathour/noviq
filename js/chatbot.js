@@ -242,14 +242,14 @@
       id: "order",
       re: /\bhow\b.{0,25}\b(order|buy|purchase)\b|\b(order|purchase)(ing)? process\b|\bplace an? order\b|\bhow does (ordering|buying)\b|\bhow (to|do i) enquire\b/,
       html: () =>
-        `<p>Ordering takes three steps:</p><ul><li><b>Send an enquiry.</b> Open a resource and choose <i>Enquire by email</i>, or add several to your enquiry list.</li><li><b>Get payment details.</b> We reply with payment instructions and an order reference.</li><li><b>Receive your files.</b> Once payment is confirmed, they're sent to you privately.</li></ul><p>No payment is taken on this site.</p>`,
+        `<p>Ordering takes three quick steps:</p><ul><li><b>Pay by UPI.</b> Choose <i>Buy now</i> (or add resources to your cart), then scan the QR code or tap to pay in your UPI app.</li><li><b>Confirm.</b> Enter your email and the UPI transaction ID so we can match your payment.</li><li><b>Receive your files.</b> Once the payment is confirmed, the files are emailed to you privately.</li></ul>`,
       chips: ["Show free resources", "Refund policy", "Contact the team"],
     },
     {
       id: "payment",
       re: /\b(pay|paying|payment|payments|upi|gpay|google pay|phonepe|paytm|net ?banking|credit card|debit card|invoice|gst|receipt)\b/,
       html: () =>
-        `<p>No payment is taken on this site. After you send an enquiry, we reply with payment instructions and an order reference. If you need a particular payment method or an invoice, mention it in your enquiry and the team will confirm.</p><p>${link(contactHref("Order enquiry", "I have a question about payment."), "Ask about payment")}</p>`,
+        `<p>You pay by UPI: scan the QR code at checkout, or tap to open your UPI app. Card and netbanking are coming soon. After paying, enter your email and the UPI transaction ID, and we email your files once the payment is confirmed. If you need an invoice, mention it when you contact us.</p><p>${link(contactHref("Order enquiry", "I have a question about payment."), "Ask about payment")}</p>`,
       chips: ["How do I order?", "Refund policy"],
     },
     {
@@ -289,9 +289,9 @@
     },
     {
       id: "cart",
-      re: /\b(cart|basket|enquiry list|wishlist|my list)\b/,
+      re: /\b(cart|basket|enquiry list|wishlist|my list|checkout)\b/,
       html: () =>
-        "<p>The enquiry list works like a basket. Use <i>+ Add to enquiry list</i> on a resource, open the bag icon at the top right, and choose <i>Continue by email</i> to send one enquiry for everything. No payment is taken there.</p>",
+        "<p>Your cart works like a basket. Use <i>+ Add to cart</i> on a resource, open the bag icon at the top right, and choose <i>Checkout</i> to pay for everything at once by UPI.</p>",
       chips: ["How do I order?", "Show free resources"],
     },
     {
@@ -488,7 +488,7 @@
     if (relaxed)
       html = `<p>I couldn't find an exact match for those filters, so these are the closest resources:</p>`;
     if (/\b(buy|order|purchase|get)\b/.test(lower) && cards.some((c) => c.kind === "product"))
-      html += `<p>To order, open a resource and choose <i>Enquire by email</i>, or add it to your enquiry list.</p>`;
+      html += `<p>To order, open a resource and choose <i>Buy now</i>, or add it to your cart.</p>`;
 
     const mainTok = contentTokens[0] || qTokens[0];
     const hidden = prods.length + goodNotes.length - cards.length;
@@ -579,7 +579,7 @@
     if (!p.price_inr && p.file)
       acts.push(`<a class="nq-act" href="${esc(p.file)}" download>Download free</a>`);
     if (canAdd)
-      acts.push(`<button class="nq-act" type="button" data-add="${esc(p.id)}">+ Enquiry list</button>`);
+      acts.push(`<button class="nq-act" type="button" data-add="${esc(p.id)}">+ Add to cart</button>`);
     acts.push(
       `<a class="nq-act ghost" href="product.html?slug=${encodeURIComponent(p.slug)}">Details</a>`,
     );
@@ -739,7 +739,7 @@
       restore();
       input.focus({ preventScroll: true });
     });
-    // After "+ Enquiry list" is clicked, cart.js updates the button text.
+    // After "+ Add to cart" is clicked, cart.js updates the button text.
     // Mark it visually so the state is clear inside the chat.
     log.addEventListener("click", (e) => {
       const add = e.target.closest("[data-add]");

@@ -1,3 +1,9 @@
+// Store settings. Put your UPI ID below (e.g. "name@okhdfcbank") to switch on UPI checkout.
+const SITE = {
+  upi: "ayushrathour20@nyes",
+  upiName: "NOVIQ",
+  formKey: "acdefb25-584d-43b4-8423-de58bb8f4396", // Web3Forms key (same as the contact form)
+};
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const Q = new URLSearchParams(location.search),
   $ = (s) => document.querySelector(s);

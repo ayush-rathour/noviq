@@ -30,6 +30,23 @@ const money = (product) =>
     ? `₹${Number(product.price_inr).toLocaleString("en-IN")}`
     : "Free";
 
+let CATALOG = [];
+// Value of what a bundle contains, matched by title ("All five launch products" = featured paid items).
+const bundleWorth = (b) => {
+  if (b.category !== "bundle") return 0;
+  const inc = b.includes || [];
+  let items = inc.map((t) => CATALOG.find((x) => x.title === t)).filter(Boolean);
+  if (!items.length && inc.some((t) => /all five/i.test(t)))
+    items = CATALOG.filter((x) => x.featured && x.price_inr > 0 && x.category !== "bundle");
+  return items.reduce((s, x) => s + x.price_inr, 0);
+};
+const bundleSave = (b) => Math.max(0, bundleWorth(b) - (b.price_inr || 0));
+const inr = (n) => `₹${Number(n).toLocaleString("en-IN")}`;
+const bundleFor = (p) =>
+  CATALOG.filter((b) => b.category === "bundle" && b.id !== p.id && bundleSave(b) > 0 &&
+    ((b.includes || []).includes(p.title) || (/all five/i.test((b.includes || [])[0] || "") && p.featured && p.price_inr > 0)))
+    .sort((a, b) => bundleSave(b) - bundleSave(a))[0];
+
 const FORMAT_LABELS = {
   "notion template": "Notion",
   "html/css/js": "HTML",
@@ -83,7 +100,7 @@ const card = (product) => {
         <small>${escapeHTML(product.category)}</small>
         <h3>${escapeHTML(product.title)}</h3>
         <p>${escapeHTML(product.description)}</p>
-        <div class="pr"><span>${money(product)}</span>${levelChip(product.level)}</div>
+        <div class="pr"><span>${money(product)}${bundleSave(product) ? `<s class="was">${inr(bundleWorth(product))}</s>` : ""}</span>${bundleSave(product) ? `<em class="save-badge">Save ${inr(bundleSave(product))}</em>` : levelChip(product.level)}</div>
       </div>
     </a>`;
 };
@@ -109,6 +126,7 @@ const load = fetch("data/products.json")
   })
   .then((products) => {
     if (!Array.isArray(products)) throw new Error("Invalid product catalogue");
+    CATALOG = products;
     return products;
   });
 
@@ -165,14 +183,11 @@ load
     const primaryAction =
       isFree && downloadUrl
         ? `<a class="btn" href="${escapeHTML(downloadUrl)}" download>Download free <span>↓</span></a>`
-        : `<a class="btn" href="${enquiry(
-            "Order enquiry",
-            `I'd like to order: ${product.title} (${product.id})`,
-          )}">Enquire by email <span>→</span></a>`;
+        : `<button class="btn" type="button" data-buy="${escapeHTML(product.id)}">Buy now · ${money(product)} <span>→</span></button>`;
 
     const addToListAction = isFree
       ? ""
-      : `<button class="btn o" type="button" data-add="${escapeHTML(product.id)}">+ Add to enquiry list</button>`;
+      : `<button class="btn o" type="button" data-add="${escapeHTML(product.id)}">+ Add to cart</button>`;
 
     const cues = (
       isFree
@@ -182,9 +197,9 @@ load
             ["shield", "Original work"],
           ]
         : [
-            ["lock", "Sent privately by email"],
-            ["eye", "Preview before you buy"],
-            ["shield", "No payment on this site"],
+            ["download", "Files sent to your email"],
+            ["lock", "Pay with any UPI app"],
+            ["shield", "7-day refund promise"],
           ]
     )
       .map(([i, t]) => `<li>${icon(i, 16)}<span>${t}</span></li>`)
@@ -213,6 +228,9 @@ load
             </div>
 
             <ul class="cues">${cues}</ul>
+            ${bundleSave(product) ? `<div class="save-box"><b>Save ${inr(bundleSave(product))}</b> vs buying separately (${inr(bundleWorth(product))}) · ${Math.round((bundleSave(product) / bundleWorth(product)) * 100)}% off</div>` : ""}
+            ${(() => { const b = !isFree && bundleFor(product); return b ? `<a class="upsell" href="product.html?slug=${encodeURIComponent(b.slug)}"><span><small>Better value</small><b>Get it in ${escapeHTML(b.title)}</b></span><em class="save-badge">Save ${inr(bundleSave(b))}</em></a>` : ""; })()}
+            <div class="trust-row" aria-label="Why buy from NOVIQ"><span>${icon("download", 18)}<b>Email delivery</b><small>Sent once payment is checked</small></span><span>${icon("shield", 18)}<b>7-day refund</b><small>If it isn't as described</small></span><span>${icon("lock", 18)}<b>Pay by UPI</b><small>Scan a QR or tap to pay</small></span></div>
 
             <div class="product-section">
               <h3>Who it's for</h3>
@@ -234,9 +252,9 @@ load
         <div class="w">
           <h2>How ordering works</h2>
           <div class="steps">
-          <div class="step"><b>01</b><p><strong>Send your enquiry</strong><br>Tell us which resource you'd like. Your email opens with the product details included.</p></div>
-          <div class="step"><b>02</b><p><strong>Receive a reply</strong><br>We'll respond with payment details and an order reference.</p></div>
-          <div class="step"><b>03</b><p><strong>Get your resource</strong><br>After payment is confirmed, we'll send the files to you privately.</p></div>
+          <div class="step"><b>01</b><p><strong>Pay by UPI</strong><br>Scan the QR code or tap to pay in your UPI app. The amount is filled in for you.</p></div>
+          <div class="step"><b>02</b><p><strong>Confirm your payment</strong><br>Enter your email and the 12-digit UPI transaction ID.</p></div>
+          <div class="step"><b>03</b><p><strong>Get your files</strong><br>Once we confirm the payment, the files are emailed to you privately.</p></div>
           </div>
           ${related.length ? `<div class="related-products"><h2>You may also like</h2><div class="grid">${related.map(card).join("")}</div></div>` : ""}
         </div>
@@ -267,4 +285,69 @@ load
           <p>Please refresh the page. If the problem continues, open NOVIQ through a local server such as VS Code Live Server.</p>
         </div>`;
     });
+  });
+
+/* ---------- Search and category filters (explore page) ---------- */
+const Search = {
+  q: (Q.get("q") || "").toLowerCase().trim(),
+  match(p) {
+    return (p.title + " " + p.description + " " + p.category + " " + p.level)
+      .toLowerCase()
+      .includes(this.q);
+  },
+  bind(fn) {
+    const i = $("#sq");
+    if (!i) return;
+    i.value = Q.get("q") || "";
+    i.addEventListener("input", (e) => {
+      this.q = e.target.value.toLowerCase().trim();
+      fn();
+    });
+    if (Q.has("q")) i.focus();
+  },
+};
+
+const Filters = {
+  cat: Q.get("cat") || "all",
+  sort: "featured",
+  list: ["all", "build", "learn", "organize", "practice", "bundle"],
+};
+if ($("#fl"))
+  load.then((P) => {
+    const sorts = {
+      featured: (a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0),
+      low: (a, b) => (a.price_inr || 0) - (b.price_inr || 0),
+      high: (a, b) => (b.price_inr || 0) - (a.price_inr || 0),
+    };
+    const draw = () => {
+      $("#fl").innerHTML = Filters.list
+        .map(
+          (x) =>
+            `<button class="chip ${x == Filters.cat ? "on" : ""}" data-c="${x}">${x == "all" ? "All" : x[0].toUpperCase() + x.slice(1)}</button>`,
+        )
+        .join("");
+      const L = P.filter(
+        (p) =>
+          (Filters.cat == "all" || p.category == Filters.cat) &&
+          Search.match(p),
+      ).sort(sorts[Filters.sort]);
+      $("#ex").removeAttribute("aria-busy");
+      $("#ex").innerHTML =
+        L.map(card).join("") ||
+        '<p class="empty-state">No resources match. Try another search or category.</p>';
+      $("#cnt").textContent =
+        L.length + (L.length == 1 ? " resource" : " resources");
+    };
+    $("#fl").onclick = (e) => {
+      if (e.target.dataset.c) {
+        Filters.cat = e.target.dataset.c;
+        draw();
+      }
+    };
+    $("#so")?.addEventListener("change", (e) => {
+      Filters.sort = e.target.value;
+      draw();
+    });
+    Search.bind(draw);
+    draw();
   });

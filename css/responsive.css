@@ -476,3 +476,78 @@ main > div > section:first-child {
     transform: none;
   }
 }
+
+/* ---------- 11. Order bar, trust row and checkout on phones ---------- */
+@media (max-width: 700px) {
+  .buybar {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    width: auto;
+    gap: 14px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+  .buybar.hide {
+    transform: translateY(110%);
+  }
+  body.has-buybar footer {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+  body.has-buybar #toast {
+    bottom: calc(88px + env(safe-area-inset-bottom));
+  }
+  #co {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .co-card {
+    width: 100%;
+    max-height: 94dvh;
+    border-radius: var(--r3) var(--r3) 0 0;
+    padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
+  }
+  .co-upi {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .co-qr {
+    width: 150px;
+  }
+  .co-how {
+    width: 100%;
+  }
+  .co-app {
+    display: inline-flex;
+  }
+}
+@media (max-width: 560px) {
+  .trust-row {
+    grid-template-columns: 1fr;
+  }
+  .trust-row span {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 10px;
+  }
+  .trust-row svg {
+    grid-row: span 2;
+    margin: 0;
+  }
+  .co-steps li {
+    padding: 8px;
+    font-size: 0.72rem;
+  }
+}
+@media (pointer: coarse) {
+  .co-app {
+    display: inline-flex;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .co-card {
+    animation: none;
+  }
+}
