@@ -35,17 +35,28 @@ let CATALOG = [];
 const bundleWorth = (b) => {
   if (b.category !== "bundle") return 0;
   const inc = b.includes || [];
-  let items = inc.map((t) => CATALOG.find((x) => x.title === t)).filter(Boolean);
+  let items = inc
+    .map((t) => CATALOG.find((x) => x.title === t))
+    .filter(Boolean);
   if (!items.length && inc.some((t) => /all five/i.test(t)))
-    items = CATALOG.filter((x) => x.featured && x.price_inr > 0 && x.category !== "bundle");
+    items = CATALOG.filter(
+      (x) => x.featured && x.price_inr > 0 && x.category !== "bundle",
+    );
   return items.reduce((s, x) => s + x.price_inr, 0);
 };
 const bundleSave = (b) => Math.max(0, bundleWorth(b) - (b.price_inr || 0));
 const inr = (n) => `₹${Number(n).toLocaleString("en-IN")}`;
 const bundleFor = (p) =>
-  CATALOG.filter((b) => b.category === "bundle" && b.id !== p.id && bundleSave(b) > 0 &&
-    ((b.includes || []).includes(p.title) || (/all five/i.test((b.includes || [])[0] || "") && p.featured && p.price_inr > 0)))
-    .sort((a, b) => bundleSave(b) - bundleSave(a))[0];
+  CATALOG.filter(
+    (b) =>
+      b.category === "bundle" &&
+      b.id !== p.id &&
+      bundleSave(b) > 0 &&
+      ((b.includes || []).includes(p.title) ||
+        (/all five/i.test((b.includes || [])[0] || "") &&
+          p.featured &&
+          p.price_inr > 0)),
+  ).sort((a, b) => bundleSave(b) - bundleSave(a))[0];
 
 const FORMAT_LABELS = {
   "notion template": "Notion",
@@ -64,7 +75,9 @@ const levelBars = (level = "") => {
 const levelChip = (level = "") => {
   const n = levelBars(level);
   const bars = n
-    ? `<svg class="bars" width="14" height="12" viewBox="0 0 14 12" aria-hidden="true">${[0, 1, 2]
+    ? `<svg class="bars" width="14" height="12" viewBox="0 0 14 12" aria-hidden="true">${[
+        0, 1, 2,
+      ]
         .map(
           (i) =>
             `<rect x="${i * 5}" y="${8 - i * 3}" width="3.6" height="${4 + i * 3}" rx="1"${i < n ? "" : ' class="off"'}/>`,
@@ -165,7 +178,10 @@ load
     document.title = `${product.title} | NOVIQ`;
     document
       .querySelector('meta[name="description"]')
-      ?.setAttribute("content", product.description || "NOVIQ resource details.");
+      ?.setAttribute(
+        "content",
+        product.description || "NOVIQ resource details.",
+      );
 
     const isFree = !product.price_inr;
     const category = safeCategory(product.category);
@@ -229,7 +245,12 @@ load
 
             <ul class="cues">${cues}</ul>
             ${bundleSave(product) ? `<div class="save-box"><b>Save ${inr(bundleSave(product))}</b> vs buying separately (${inr(bundleWorth(product))}) · ${Math.round((bundleSave(product) / bundleWorth(product)) * 100)}% off</div>` : ""}
-            ${(() => { const b = !isFree && bundleFor(product); return b ? `<a class="upsell" href="product.html?slug=${encodeURIComponent(b.slug)}"><span><small>Better value</small><b>Get it in ${escapeHTML(b.title)}</b></span><em class="save-badge">Save ${inr(bundleSave(b))}</em></a>` : ""; })()}
+            ${(() => {
+              const b = !isFree && bundleFor(product);
+              return b
+                ? `<a class="upsell" href="product.html?slug=${encodeURIComponent(b.slug)}"><span><small>Better value</small><b>Get it in ${escapeHTML(b.title)}</b></span><em class="save-badge">Save ${inr(bundleSave(b))}</em></a>`
+                : "";
+            })()}
             <div class="trust-row" aria-label="Why buy from NOVIQ"><span>${icon("download", 18)}<b>Email delivery</b><small>Sent once payment is checked</small></span><span>${icon("shield", 18)}<b>7-day refund</b><small>If it isn't as described</small></span><span>${icon("lock", 18)}<b>Pay by UPI</b><small>Scan a QR or tap to pay</small></span></div>
 
             <div class="product-section">

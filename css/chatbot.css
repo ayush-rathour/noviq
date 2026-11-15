@@ -20,7 +20,9 @@
   font: 700 0.92rem/1 var(--f, system-ui, sans-serif);
   box-shadow: 0 10px 30px rgba(13, 18, 48, 0.28);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .nq-btn svg {
   color: var(--lime, #cbf36a);
@@ -215,7 +217,9 @@ body.nq-open .nq-btn {
   border: 1px solid var(--line, #e1e5f0);
   border-radius: 14px;
   overflow: hidden;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 .nq-card:hover {
   border-color: var(--violet, #6a4cff);
@@ -281,6 +285,79 @@ body.nq-open .nq-btn {
   background: var(--lime, #cbf36a);
   border-color: var(--lime, #cbf36a);
   color: var(--navy, #0d1230);
+}
+
+/* numbered steps inside answers */
+.nq-bub ol.nq-steps {
+  list-style: none;
+  counter-reset: nq-step;
+  margin: 10px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+.nq-bub ol.nq-steps li {
+  position: relative;
+  counter-increment: nq-step;
+  margin: 0;
+  padding-left: 32px;
+  line-height: 1.45;
+}
+.nq-bub ol.nq-steps li::before {
+  content: counter(nq-step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--navy, #0d1230);
+  color: var(--lime, #cbf36a);
+  font: 800 0.72rem/1 var(--f, inherit);
+}
+.nq-bub li + li {
+  margin-top: 4px;
+}
+.nq-bub ol.nq-steps li + li {
+  margin-top: 0;
+}
+
+/* "was this helpful?" */
+.nq-fb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 4px;
+  font-size: 0.75rem;
+  color: var(--ink3, #6b7290);
+}
+.nq-fb span {
+  margin-right: 2px;
+}
+.nq-fb button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1.5px solid var(--line2, #ccd2e3);
+  border-radius: 50%;
+  background: var(--paper, #fff);
+  color: var(--ink2, #444b6b);
+  cursor: pointer;
+}
+.nq-fb button:hover {
+  border-color: var(--violet, #6a4cff);
+  color: var(--violet, #6a4cff);
+}
+.nq-acts {
+  flex-wrap: wrap;
+}
+.nq-foot a {
+  color: var(--violet, #6a4cff);
+  font-weight: 700;
 }
 
 /* suggestion chips */

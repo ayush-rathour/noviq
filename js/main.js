@@ -43,8 +43,8 @@ const ICON_PATHS = {
     '<path d="M12 3.5 19 6v5.6c0 4.3-2.9 7.3-7 8.9-4.1-1.6-7-4.6-7-8.9V6l7-2.5Z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/>',
   mail: '<rect x="3.5" y="5.5" width="17" height="13" rx="2.6"/><path d="m4 7.5 8 6 8-6"/>',
   check: '<path d="m5 12.5 4.2 4.2L19 7.2"/>',
-  download:
-    '<path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 20h14"/>',
+  copy: '<rect x="8.5" y="8.5" width="11" height="11" rx="2.4"/><path d="M15.5 8.5V6.9a2.4 2.4 0 0 0-2.4-2.4H6.9a2.4 2.4 0 0 0-2.4 2.4v6.2a2.4 2.4 0 0 0 2.4 2.4h1.6"/>',
+  download: '<path d="M12 4v11M7.5 11 12 15.5 16.5 11M5 20h14"/>',
 };
 const icon = (name, size = 20) =>
   `<svg class="i" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name] || ICON_PATHS.learn}</svg>`;
@@ -124,7 +124,8 @@ if (cf) {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data.success === false) throw new Error("send failed");
-      $("#th-name").textContent = (cf.elements.name.value || "").trim().split(/\s+/)[0] || "there";
+      $("#th-name").textContent =
+        (cf.elements.name.value || "").trim().split(/\s+/)[0] || "there";
       $("#th-email").textContent = cf.elements.email.value;
       cf.closest("[data-form-wrap]").hidden = true;
       thanks.hidden = false;
@@ -144,7 +145,7 @@ if (cf) {
     $("[data-form-wrap]").hidden = false;
     const b = cf.querySelector('button[type="submit"]');
     b.disabled = false;
-    b.innerHTML = 'Send enquiry <span>&rarr;</span>';
+    b.innerHTML = "Send message <span>&rarr;</span>";
     cf.elements.name.focus();
   });
 }

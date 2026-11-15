@@ -81,23 +81,12 @@ const Cart = {
         )
         .join("");
 
-      const orderMessage = [
-        "I'd like to enquire about the following NOVIQ resources:",
-        ...selected.map(
-          (product) =>
-            `- ${product.title} (${product.price_inr ? `₹${product.price_inr}` : "Free"}) · ID: ${product.id}`,
-        ),
-        `Total (indicative): ₹${total.toLocaleString("en-IN")}`,
-        "Please share the next steps for ordering.",
-      ].join("\n");
-
       summaryRoot.innerHTML = `
         <div class="tot">
           <span>Total</span>
           <b>₹${total.toLocaleString("en-IN")}</b>
         </div>
         <button class="btn" type="button" data-checkout>Checkout · ₹${total.toLocaleString("en-IN")} <span>→</span></button>
-        <a class="cart-alt" href="${enquiry("Order enquiry", orderMessage)}">Prefer to order by email?</a>
         <button class="btn o" type="button" id="cl">Clear cart</button>
         <p class="cart-note">Pay by UPI · Files sent to your email · 7-day refund</p>`;
     } catch (error) {
@@ -435,6 +424,27 @@ const newRef = () =>
 const upiLink = (amount, ref) =>
   `upi://pay?pa=${encodeURIComponent(SITE.upi)}&pn=${encodeURIComponent(SITE.upiName)}&am=${amount}.00&cu=INR&tn=${encodeURIComponent("NOVIQ " + ref)}`;
 
+const copyText = async (text) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    try {
+      const t = document.createElement("textarea");
+      t.value = text;
+      t.setAttribute("readonly", "");
+      t.style.cssText = "position:fixed;opacity:0;top:0;left:0";
+      document.body.appendChild(t);
+      t.select();
+      const ok = document.execCommand("copy");
+      t.remove();
+      return ok;
+    } catch {
+      return false;
+    }
+  }
+};
+
 const Checkout = {
   el: null,
   close() {
@@ -499,7 +509,8 @@ const Checkout = {
                 <b>Scan with any UPI app</b>
                 <small>GPay, PhonePe, Paytm, BHIM. The amount is filled in for you.</small>
                 <a class="btn co-app" href="${escapeHTML(upiLink(total, ref))}">Open UPI app <span>→</span></a>
-                <button type="button" class="co-copy" data-copy="${escapeHTML(SITE.upi)}"><span>${escapeHTML(SITE.upi)}</span><i>Copy</i></button>
+                <div class="co-upiid"><div><small>UPI ID</small><code>${escapeHTML(SITE.upi)}</code></div><button type="button" class="co-ci" data-copy="${escapeHTML(SITE.upi)}" aria-label="Copy UPI ID" title="Copy UPI ID">${icon("copy", 17)}</button></div>
+                <span class="co-sr" role="status" aria-live="polite" data-copy-status></span>
               </div>
             </div>
             <button type="button" class="btn co-go" data-co-next>I've paid ${inr(total)} <span>→</span></button>`
@@ -507,7 +518,6 @@ const Checkout = {
             <p class="co-msg">Online payment is being set up. Send us your order by email and we'll share payment details.</p>
             <a class="btn co-go" href="${enquiry("Order enquiry", `I'd like to order:\n${list}\nTotal: ${inr(total)}`)}">Order by email <span>→</span></a>`
             }
-            <div class="co-soon"><span>Card</span><span>Netbanking</span><small>Coming soon</small></div>
           </div>
 
           <form data-pane="confirm" hidden novalidate>
@@ -539,9 +549,22 @@ const Checkout = {
       if (e.target.closest("[data-co-back]")) this.pane("pay");
       const c = e.target.closest("[data-copy]");
       if (c)
-        navigator.clipboard?.writeText(c.dataset.copy).then(() => {
-          c.querySelector("i").textContent = "Copied ✓";
-          setTimeout(() => (c.querySelector("i").textContent = "Copy"), 1800);
+        copyText(c.dataset.copy).then((done) => {
+          const status = el.querySelector("[data-copy-status]");
+          c.classList.toggle("ok", done);
+          c.innerHTML = icon(done ? "check" : "copy", 17);
+          c.setAttribute("aria-label", done ? "UPI ID copied" : "Copy UPI ID");
+          if (status)
+            status.textContent = done
+              ? "UPI ID copied"
+              : "Couldn't copy. Select the UPI ID and copy it manually.";
+          clearTimeout(c._t);
+          c._t = setTimeout(() => {
+            c.classList.remove("ok");
+            c.innerHTML = icon("copy", 17);
+            c.setAttribute("aria-label", "Copy UPI ID");
+            if (status) status.textContent = "";
+          }, 1800);
         });
     });
     form.addEventListener("submit", async (e) => {

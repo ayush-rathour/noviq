@@ -36,11 +36,46 @@
             <p class="eyebrow">WE’RE HERE TO HELP</p>
 
             <h1 style="font-size: clamp(2.2rem, 5vw, 3.6rem)">
-              Order enquiries and support
+              How can we help?
             </h1>
             <p class="lead" style="font-size: 1rem">
-              Send us a message and the NOVIQ team will reply by email.
+              Pick what you need help with, or write to us directly. A real
+              person reads every message and replies by email.
             </p>
+            <div class="help-grid" role="group" aria-label="Quick help">
+              <button
+                type="button"
+                class="help-btn"
+                data-topic="Delivery issue"
+                data-msg="I paid but haven't received my files yet.&#10;Order reference: &#10;UPI transaction ID: &#10;Email I ordered with: "
+              >
+                <b>Paid, no files yet</b><span>Check on my delivery</span>
+              </button>
+              <button
+                type="button"
+                class="help-btn"
+                data-topic="Payment help"
+                data-msg="I need help with my payment.&#10;Resource: &#10;Amount: &#10;UPI transaction ID: &#10;What happened: "
+              >
+                <b>Payment problem</b><span>Failed, deducted or unsure</span>
+              </button>
+              <button
+                type="button"
+                class="help-btn"
+                data-topic="Refund request"
+                data-msg="I would like to ask about a refund.&#10;Order reference: &#10;Email I ordered with: &#10;What went wrong: "
+              >
+                <b>Refund request</b><span>Faulty, missing or duplicate</span>
+              </button>
+              <button
+                type="button"
+                class="help-btn"
+                data-topic="Question"
+                data-msg="I have a question about: "
+              >
+                <b>Ask about a resource</b><span>Contents, level, formats</span>
+              </button>
+            </div>
             <div data-form-wrap>
               <form
                 id="cf"
@@ -77,18 +112,35 @@
                 <label
                   >Topic<select name="topic" id="cf-topic">
                     <option>Order enquiry</option>
+                    <option>Payment help</option>
+                    <option>Delivery issue</option>
+                    <option>Refund request</option>
                     <option>Question</option>
-                    <option>Support</option>
+                    <option value="Support">Other support</option>
                   </select></label
                 >
+                <label
+                  >Order reference <span class="opt">(optional)</span
+                  ><input
+                    name="order_ref"
+                    id="cf-ref"
+                    type="text"
+                    autocomplete="off"
+                    maxlength="20"
+                    placeholder="e.g. NVQ-7K2M9P"
+                /></label>
                 <label
                   >Message<textarea
                     name="message"
                     id="cf-message"
-                    rows="5"
+                    rows="6"
+                    maxlength="2000"
                     placeholder="How can we help?"
                     required
                   ></textarea>
+                  <small id="cf-hint" class="cf-hint"
+                    >Tell us what you need and we'll take it from there.</small
+                  >
                 </label>
                 <input
                   type="checkbox"
@@ -100,7 +152,7 @@
                 />
                 <p id="cf-err" class="cf-err" role="alert" hidden></p>
                 <button class="btn" type="submit">
-                  Send enquiry <span>&rarr;</span>
+                  Send message <span>&rarr;</span>
                 </button>
               </form>
             </div>
@@ -112,7 +164,9 @@
                 Thanks, <span id="th-name">there</span>. Your message is in.
               </h2>
               <p>
-                We'll reply to <b id="th-email"></b>. For order questions, keep your order reference handy.
+                We'll reply to <b id="th-email"></b>. Please check your spam
+                folder if you don't see our reply, and keep your order reference
+                and UPI transaction ID handy.
               </p>
               <div class="thanks-actions">
                 <a class="btn" href="explore.html"
@@ -124,52 +178,133 @@
               </div>
             </div>
           </div>
-          <div id="faq">
-            <h2>FAQ</h2>
-            <details>
-              <summary>How do I order?</summary>
-              <p>
-                Open a resource, choose Buy now, and pay by UPI: scan the QR code or tap to pay in your app. Enter your email and transaction ID, and we email your files once the payment is confirmed.
+          <div>
+            <aside class="expect" aria-label="What to expect">
+              <h2>What to expect</h2>
+              <ul>
+                <li>
+                  <b>Replies by email.</b> Real people answer every message and
+                  confirm every order by hand.
+                </li>
+                <li>
+                  <b>Refund requests</b> get a reply within 2 business days.
+                </li>
+                <li>
+                  <b>Have these ready:</b> your order reference, the UPI
+                  transaction ID and the email you ordered with.
+                </li>
+                <li>
+                  <b>Can't find our reply?</b> Check your spam or junk folder.
+                </li>
+              </ul>
+            </aside>
+            <div id="faq">
+              <h2>FAQ</h2>
+              <label class="faq-search"
+                ><span class="co-sr">Search the FAQ</span
+                ><input
+                  id="faq-q"
+                  type="search"
+                  placeholder="Search: refund, UPI, delivery…"
+                  autocomplete="off"
+              /></label>
+              <p id="faq-empty" class="faq-empty" role="status" hidden>
+                No answers match that. Send us a message and we'll help.
               </p>
-            </details>
-            <details>
-              <summary>How is my file delivered?</summary>
-              <p>
-                Privately by email, after your payment is confirmed. Previews
-                never contain the complete paid file.
-              </p>
-            </details>
-            <details>
-              <summary>Which formats do you offer?</summary>
-              <p>
-                PDF guides and workbooks, Notion templates, and HTML/CSS/JS
-                starter files. Every product page lists its formats.
-              </p>
-            </details>
-            <details>
-              <summary>Do I need any experience?</summary>
-              <p>
-                Each resource states its level and prerequisites up front, from
-                complete beginner to intermediate.
-              </p>
-            </details>
-            <details>
-              <summary>What about refunds?</summary>
-              <p>
-                Files are digital, so they can't be returned once delivered, but
-                we refund faulty or missing files, duplicate payments and
-                orders that could not be delivered. Write to us within 7 days of
-                receiving your files. Read the full
-                <a href="refund.html">refund policy</a>.
-              </p>
-            </details>
-            <details>
-              <summary>Can I try before I buy?</summary>
-              <p>
-                Yes. The free library has resources you can download without
-                paying.
-              </p>
-            </details>
+              <details>
+                <summary>How do I order?</summary>
+                <div class="ans">
+                  <ol class="faq-steps">
+                    <li>
+                      <b>Explore.</b> Browse Explore, Bundles or the free
+                      library.
+                    </li>
+                    <li>
+                      <b>Select a pack.</b> Open a resource, check what's
+                      inside, then choose Buy now (or Add to cart).
+                    </li>
+                    <li>
+                      <b>Follow the steps.</b> Checkout shows what you're buying
+                      and the total, in three short steps: Pay, Confirm, Get
+                      files.
+                    </li>
+                    <li>
+                      <b>Pay by UPI.</b> Scan the QR code (or tap Open UPI app
+                      on your phone), then enter your email and the 12-digit
+                      transaction ID. We email your files once the payment is
+                      confirmed.
+                    </li>
+                  </ol>
+                </div>
+              </details>
+              <details>
+                <summary>Which payment methods do you accept?</summary>
+                <p>
+                  UPI. Pay with any UPI app, such as GPay, PhonePe, Paytm or
+                  BHIM.
+                </p>
+              </details>
+              <details>
+                <summary>I paid, but I haven't received my files</summary>
+                <p>
+                  Every order is matched to its payment by hand, so files are
+                  sent once we've confirmed it. Meanwhile, check your spam
+                  folder and that the email you entered is right. Still nothing?
+                  Choose
+                  <b>Delivery issue</b> in the form and include your order
+                  reference and transaction ID.
+                </p>
+              </details>
+              <details>
+                <summary>
+                  My payment went through but I lost the order reference
+                </summary>
+                <p>
+                  No problem. Choose <b>Payment help</b>, then send the UPI
+                  transaction ID, the amount and the resource name, and we'll
+                  match it to your order.
+                </p>
+              </details>
+              <details>
+                <summary>I entered the wrong email or transaction ID</summary>
+                <p>
+                  Write to us with your order reference and the correct details
+                  (topic <b>Order enquiry</b>) and we'll fix it.
+                </p>
+              </details>
+              <details>
+                <summary>How is my file delivered?</summary>
+                <p>
+                  Privately by email, after your payment is confirmed. Previews
+                  never contain the complete paid file.
+                </p>
+              </details>
+              <details>
+                <summary>Which formats do you offer?</summary>
+                <p>
+                  PDF guides and workbooks, Notion templates, and HTML/CSS/JS
+                  starter files. Every product page lists its formats.
+                </p>
+              </details>
+              <details>
+                <summary>Can I try before I buy?</summary>
+                <p>
+                  Yes. The free library has resources you can download without
+                  paying.
+                </p>
+              </details>
+              <details>
+                <summary>What about refunds?</summary>
+                <p>
+                  Files are digital, so they can't be returned once delivered,
+                  but we refund faulty or missing files, duplicate payments and
+                  orders that could not be delivered. Write to us within 7 days
+                  of receiving your files. Approved refunds go back to the same
+                  account or UPI ID, usually within 5 to 7 business days. Read
+                  the full <a href="refund.html">refund policy</a>.
+                </p>
+              </details>
+            </div>
           </div>
         </div>
       </section>
@@ -178,6 +313,7 @@
     <script src="js/main.js"></script>
     <script src="js/products.js"></script>
     <script src="js/cart.js"></script>
-      <script src="js/chatbot.js" defer></script>
+    <script src="js/support.js"></script>
+    <script src="js/chatbot.js" defer></script>
   </body>
 </html>
